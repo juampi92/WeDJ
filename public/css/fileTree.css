@@ -1,0 +1,60 @@
+ul.fileTree {
+	font-family: Verdana, sans-serif;
+	font-size: 11px;
+	line-height: 18px;
+	padding: 0px;
+	margin: 0px;
+	padding-right:10px;
+}
+
+ul.fileTree li {
+	text-align: left;
+	list-style: none;
+	padding: 0px;
+	margin: 0px;
+	white-space: nowrap;
+}
+ul.fileTree span {
+	display: inline-block; width: 15px; height: 15px;vertical-align:top;
+}
+ul.fileTree span.directory:hover {
+	cursor: pointer;
+}
+
+ul.fileTree a {
+	color: #999;
+	text-decoration: none;
+	display: inline-block;
+	padding: 0px;
+	padding-left: 20px;
+	width:100%;
+
+	webkit-user-select: none; /* webkit (safari, chrome) browsers */
+    -moz-user-select: none; /* mozilla browsers */
+    -khtml-user-select: none; /* webkit (konqueror) browsers */
+    -ms-user-select: none; /* IE10+ */
+}
+
+ul.fileTree ul {
+	padding-left: 15px;
+}
+
+ul.fileTree a:hover {
+	cursor: pointer;
+}
+
+ul.fileTree a.disabled {
+	color: #505050;
+}
+ul.fileTree a.disabled:hover {
+	cursor: default;
+}
+
+/* Core Styles */
+.fileTree li > a.folder { background: url(../img/folder.png) left top no-repeat; }
+.fileTree li.active > a.folder { background: black url(../img/folder_open.png) left top no-repeat; color:white; font-weight: bold; }
+.fileTree li span.directory { background: url(../img/directory.png) left top no-repeat; }
+.fileTree li span.expanded { background: url(../img/directory_open.png) left top no-repeat; }
+.fileTree li span.wait { background-image: url(../img/spinner.gif) left top no-repeat; }
+/* File Extensions*/
+.fileTree li.mp3 { background: url(../img/music.png) left top no-repeat; }

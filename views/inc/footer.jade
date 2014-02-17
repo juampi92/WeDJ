@@ -1,0 +1,26 @@
+.mastfoot
+  p
+    | &copy; We
+    b DJ 
+    | (2014)
+#templates
+  #authModal.modal.fade.bs-modal-sm(tabindex='-1', role='dialog', aria-labelledby='authModal', aria-hidden='false')
+    .modal-dialog.modal-sm
+      .modal-content
+        .modal-header
+          h4.modal-title Identificate
+        .modal-body
+          .alert.alert-danger(style="display:none;")
+          form
+            input.form-control(type="text" placeholder="Nombre de usuario")
+        .modal-footer
+          button.btn.btn-primary(type='button') Ingresar
+  #offlineModal.modal.fade.bs-modal-sm(tabindex='-1', role='dialog', aria-labelledby='offlineModal', aria-hidden='false')
+    .modal-dialog.modal-sm
+      .modal-content
+        .modal-header
+          h4.modal-title Servidor desconectado
+        .modal-body
+          |El servidor fue desconectado. 
+          p El cartel desaparecerá si se vuelve a conectar el servidor dentro de los próximos minutos.
+include scripts

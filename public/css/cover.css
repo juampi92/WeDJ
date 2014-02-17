@@ -1,0 +1,354 @@
+/*
+ * Globals
+ */
+
+/* Links */
+a,
+a:focus,
+a:hover {
+  color: #fff;
+  border: none;
+  outline:0;
+}
+
+/* Custom default button */
+.btn-default,
+.btn-default:hover,
+.btn-default:focus {
+  color: #333;
+  text-shadow: none; /* Prevent inheritence from `body` */
+  background-color: #fff;
+  border: 1px solid #fff;
+}
+
+
+/*
+ * Base structure
+ */
+
+html,
+body {
+  height: 100%;
+  background-color: #333;
+}
+body {
+  color: #fff;
+  text-align: center;
+}
+
+/* Extra markup and styles for table-esque vertical and horizontal centering */
+.site-wrapper {
+  display: table;
+  width: 100%;
+  height: 100%; /* For at least Firefox */
+  min-height: 100%;
+  background-color: #333;
+  text-shadow: 0 1px 3px rgba(0,0,0,.5);
+  box-shadow: inset 0 0 100px rgba(0,0,0,.5);
+}
+.site-wrapper-inner {
+  display: table-cell;
+  vertical-align: top;
+}
+.cover-container {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Padding for spacing */
+.inner {
+  padding: 60px 30px 0 30px;
+}
+
+
+/*
+ * Header
+ */
+.masthead-brand {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.masthead-nav > li {
+  display: inline-block;
+}
+.masthead-nav > li + li {
+  margin-left: 20px;
+}
+.masthead-nav > li > a {
+  padding-left: 0;
+  padding-right: 0;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff; /* IE8 proofing */
+  color: rgba(255,255,255,.75);
+  border-bottom: 2px solid transparent;
+}
+.masthead-nav > li > a:hover,
+.masthead-nav > li > a:focus {
+  background-color: transparent;
+  border-bottom-color: rgba(255,255,255,.25);
+}
+.masthead-nav > .active > a,
+.masthead-nav > .active > a:hover,
+.masthead-nav > .active > a:focus {
+  color: #fff;
+  border-bottom-color: #fff;
+}
+
+@media (min-width: 768px) {
+  .masthead-brand {
+    float: left;
+  }
+  .masthead-nav {
+    float: right;
+  }
+}
+
+#state {
+  background: black;
+}
+
+/*
+ * Contenido
+ */
+
+span.badge {
+  margin-left: 8px;
+  font-size: 10px;
+  background-color: black;
+  min-width: 5px;
+}
+
+#content > div {
+  display:none;
+}
+#content .active {
+  display:block;
+}
+li.small {
+  width: 20px !important;
+}
+
+.fixwidth {
+  margin:0 auto !important;
+}
+
+#playingsong {
+  margin-left: 0px;
+  white-space: nowrap;
+  float:left;
+  position:absolute;
+}
+
+button.navbar-toggle{
+  z-index: 1;
+}
+.navbar-collapse{
+  z-index: 1;
+}
+.nav-keepback{
+  background-image: linear-gradient(to bottom, #3C3C3C 0px, #222 100%);
+  background-repeat: repeat-x;
+}
+.nav-keepback:hover{
+  background-image: linear-gradient(to bottom, #3C3C3C 0px, #222 100%);
+  background-repeat: repeat-x;
+}
+
+.navbar-collapse.in span.descr,
+.navbar-collapse.collapsing span.descr {
+  display: inline;
+}
+span.descr {
+  display:none;
+  padding-left: 8px;
+}
+
+
+a.navbar-brand span.icons {
+  padding: 5px 10px;
+  text-align: center;
+  background: black;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+
+  margin-right: 15px;
+  cursor:default;
+}
+
+.scroller {
+  background: #262626;
+  height: 350px;
+  padding: 10px;
+  overflow-y:auto;
+  overflow-x:none;
+
+  border-left: 1px #999 solid;
+
+  -webkit-border-top-right-radius: 10px;
+  -webkit-border-bottom-right-radius: 10px;
+  -moz-border-radius-topright: 10px;
+  -moz-border-radius-bottomright: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.scroller.scroller-left {
+
+  border-left:none;
+  border-right: 2px #111 solid;
+
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+
+  -webkit-border-top-left-radius: 10px;
+  -webkit-border-bottom-left-radius: 10px;
+  -moz-border-radius-topleft: 10px;
+  -moz-border-radius-bottomleft: 10px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+ul#playlist {
+  background: #262626;
+  height: 350px;
+  padding: 10px;
+  overflow-y:auto;
+  overflow-x:none;
+  color: #999;
+
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+
+ul#playlist li {
+  text-align: left;
+  list-style: none;
+  border-bottom: 1px solid #202020;
+  padding:5px 10px;
+}
+
+ul#playlist li:hover {
+  background-color: #303030;
+}
+
+ul#playlist a {
+  text-decoration: none;
+}
+
+ul#playlist li.simple {
+  text-align: center;
+  border: none;
+}
+ul#playlist li.simple:hover {
+  background-color: #262626;  
+}
+
+ul#chat {
+  position:absolute;
+  bottom:0;
+  width: 90%;
+  padding: 0px;
+
+}
+ul#chat li{
+  position:relative;
+  padding-left: 105px;
+  margin: 0;
+  list-style: none;
+  text-align: left;
+}
+
+ul#chat li b{
+  width: 100px;
+  margin-left: -100px;
+  padding-right: 5px;
+  text-align: right;
+  display:inline-block;
+}
+
+
+.chat-footer{
+  /*height: 50px;*/
+  border-top: 1px solid black;
+  margin:10px 0;
+  background: #262626;
+  padding: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+
+/*
+ * Cover
+ */
+
+.cover {
+  padding: 0 20px;
+  
+}
+.cover .btn-lg {
+  padding: 10px 20px;
+  font-weight: bold;
+}
+
+
+/*
+ * Footer
+ */
+
+.mastfoot {
+  color: #999; /* IE8 proofing */
+  color: rgba(255,255,255,.5);
+  padding: 10px 20px;
+}
+
+#templates {
+  color: #000;
+}
+
+/*
+ * Affix and center
+ */
+
+@media (min-width: 768px) {
+  /* Pull out the header and footer */
+  /*.masthead {
+    position: fixed;
+    top: 0;
+  }
+  .mastfoot {
+    position: fixed;
+    bottom: 0;
+  }*/
+  /* Start the vertical centering 
+  .site-wrapper-inner {
+    vertical-align: middle;
+  }*/
+  /* Handle the widths */
+  .masthead,
+  .mastfoot,
+  .cover-container,
+  .fixwidth {
+    width: 90% !important; /* Must be percentage or pixels for horizontal alignment */
+  }
+  .cover{
+    margin-top: 0;
+  }
+}
+
+@media (min-width: 992px) {
+  .masthead,
+  .mastfoot,
+  .cover-container,
+  .fixwidth {
+    width: 765px !important;
+  }
+  .cover{
+    margin-top: 120px;
+  }
+}

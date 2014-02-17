@@ -1,0 +1,31 @@
+extends layout
+
+block content
+  #content
+    #tab_playlist.active
+      h1.cover-heading Playlist
+      ul#playlist
+    #tab_library
+      h1.cover-heading Biblioteca.
+      .container-fluid
+        .row-fluid
+          .col-xs-6.scroller.scroller-left
+            ul#FSfolders.fileTree
+          .col-xs-6.scroller
+            ul#FSfiles.fileTree   
+    #tab_chat
+      h1.cover-heading Chat
+      .container-fluid
+        .row-fluid
+          .col-xs-8.scroller.scroller-left
+            ul#chat
+          .col-xs-4.scroller
+            ul#users
+      .chat-footer
+        input(type="text" class="form-control")
+    #tab_about
+      h1.cover-heading Acerca de
+      p.lead
+        | #{title} is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.
+      p.lead
+        a.btn.btn-lg.btn-default(href='#') Learn more

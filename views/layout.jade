@@ -1,0 +1,62 @@
+doctype html
+html
+  include inc/header
+
+  body
+    .navbar.navbar-inverse.navbar-fixed-top(role='navigation')
+      .container.fixwidth
+        .navbar-header
+          button.navbar-toggle.nav-keepback(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+            span.sr-only Navegacion
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          #playingsong
+            a.navbar-brand
+              span.icons
+                span.glyphicon.glyphicon-music
+              span.song Cargando...
+        .navbar-collapse.collapse
+          ul.nav.navbar-nav.navbar-right.nav-keepback
+            li
+              a.voteNext(href="#")
+                span.glyphicon.glyphicon-forward
+                span.descr Siguiente canción
+                span.badge
+            li.dropdown
+              a.dropdown-toggle(href='#', data-toggle='dropdown')
+                | Dropdown
+                b.caret
+              ul.dropdown-menu
+                li
+                  a(href='#') Action
+                li
+                  a(href='#') Another action
+                li
+                  a(href='#') Something else here
+                li.divider
+                li.dropdown-header Nav header
+                li
+                  a(href='#') Separated link
+                li
+                  a(href='#') One more separated link      
+    .site-wrapper
+      .site-wrapper-inner
+        .cover-container
+          .masthead.clearfix
+            .inner
+              h3.masthead-brand WeDJ
+              ul.nav.masthead-nav
+                li.active(data-dir="playlist")
+                  a.navButton(href="#") Playlist
+                li(data-dir="library")
+                  a.navButton(href="#") Biblioteca
+                li(data-dir="chat")
+                  a.navButton(href="#") Chat
+                    span.badge
+                li(data-dir="about")
+                  a.navButton(href="#") Acerca
+          .inner.cover
+            block content
+
+          include inc/footer
