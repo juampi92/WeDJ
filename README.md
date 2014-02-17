@@ -17,7 +17,7 @@ Besides from node.js, this app needs
 Which can be downloaded from [**the website**](http://www.mpg123.de/download.shtml).
 Put the binary, if using windows, in the same folder as the proyect.
 
-Uses
+Dependencies
 ==================
 
 This proyect uses this node.js packages:
