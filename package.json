@@ -2,6 +2,12 @@
   "name": "WeDJ",
   "version": "0.0.1",
   "private": true,
+  "author": {
+    "name" : "Juan Pablo Barreto",
+    "email" : "juampi92@gmail.com",
+    "url" : "https://github.com/juampi92"
+  },
+  "license" : "GPL-2.0",
   "scripts": {
     "start": "node app.js"
   },
@@ -9,6 +15,7 @@
     "express": ">= 3.4.8",
     "jade": "*",
     "colors": "*",
-    "socket.io": ">= 0.9.16"
+    "socket.io": ">= 0.9.16",
+    "underscore": ">= 1.6.0"
   }
 }
