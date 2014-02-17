@@ -9,6 +9,7 @@ Install
 ==================
 To install this project you'll need [**Node.js**](http://nodejs.org/) and [**npm**](https://www.npmjs.org/) to install dependencies.
 Run to install:
+
 	npm install
 
 Uses
@@ -26,5 +27,5 @@ The web app uses:
 
 Contact
 ==================
-GitHub: [github.com/juampi92](https://github.com/juampi92)
-Mail: <juampi92@gmail.com>
+  * GitHub: [github.com/juampi92](https://github.com/juampi92)
+  * Mail: <juampi92@gmail.com>
