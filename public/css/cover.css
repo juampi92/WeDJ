@@ -178,6 +178,31 @@ a.navbar-brand span.icons {
   cursor:default;
 }
 
+ul.adminMenu > li span {
+  margin-right: 7px;
+}
+
+/* Auto Pilot */
+li.auto-pilot span.glyphicon-ok,
+li.auto-pilot.active span.glyphicon-random {
+  display:none;
+}
+li.auto-pilot.active span.glyphicon-ok,
+li.auto-pilot span.glyphicon-random{
+  display:inline;
+}
+
+/* Play Stop */
+ul.adminMenu > li.buttonPlay ,
+ul.adminMenu.statePlay > li.buttonStop {
+  display:inline;
+}
+
+ul.adminMenu.statePlay > li.buttonPlay ,
+ul.adminMenu > li.buttonStop {
+  display:none;
+}
+
 .scroller {
   background: #262626;
   height: 350px;

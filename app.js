@@ -39,7 +39,7 @@ users.init( socket.broadcastUsers , ip );
 
 lib.init();
 
-lib.exclude(config.lib.excludes);
+lib.addExclude(config.lib.excludes);
 lib.addFolder(config.lib.folders);
 
 lib.load();
@@ -58,7 +58,7 @@ playlist.setPlayer(player);
 
 // ---------------------------
 // Command line interpreter
-require('./lib/commandInterpreter.js')({lib:lib,player:player,playlist:playlist,socket:socket,ip:ip,users:users});
+var command = require('./lib/commandInterpreter.js')({lib:lib,player:player,playlist:playlist,socket:socket,ip:ip,users:users});
 
 process.on('exit', function(code) {
 	//console.log('About to exit with code:', code);
@@ -68,17 +68,25 @@ process.on('exit', function(code) {
 	socket.broadcastState({state:"off"}); // Broadcast exit
 });
 
-// Views
-app.get('/', require('./routes').index);
+// Views: diseño de la página.
+app.get('/', function(req,res){
+	res.render('index', {
+		title: 'WeDJ',
+		ip: ip[0]+':'+app.get('port'),
+		admin: users.isAdmin(req.connection.remoteAddress)
+	})
+});
+
+
 
 // API
 // Auth
 app.get('/auth',function(req,res){
 	if ( ! users.isLogged(req.connection.remoteAddress) )
-		res.send('{"status":"error","type":1, "msj":"No estas loggeado"}');
+		res.send('{"status":"error","type":1, "msj":"No estas loggeado","admin":"'+users.isAdmin(req.connection.remoteAddress)+'"}');
 	else {
 		var usr = users.getUserfromIP(req.connection.remoteAddress);
-		res.send('{"status":"ok","msj":"Estas loggeado","id":'+usr.id+',"name":"'+usr.name+'"}');
+		res.send('{"status":"ok","msj":"Estas loggeado","id":'+usr.id+',"name":"'+usr.name+'","admin":"'+users.isAdmin(req.connection.remoteAddress)+'"}');
 	}
 		
 });
@@ -88,7 +96,7 @@ app.post('/auth',function(req,res){
 		res.send('{"status":"error","type":3, "msj":"Nombre en uso"}'); return;
 	}
 	var id = users.log(req.connection.remoteAddress,req.body.name);
-	res.send('{"status":"ok", "msj":"Identificado como '+req.body.name+'", "id":'+id+'}');
+	res.send('{"status":"ok", "msj":"Identificado como '+req.body.name+'", "id":'+id+' , "admin":"'+users.isAdmin(req.connection.remoteAddress)+'"}');
 });
 
 app.get('/on',function(req,res){
@@ -128,27 +136,12 @@ app.get('/api/votenext', function(req, res){
 
 // Admin
 app.post('/api/admin', function(req, res){
-	if ( users.isAdmin(req.connection.remoteAddress) ) {
+	if ( ! users.isAdmin(req.connection.remoteAddress) ) {
 		res.send('{"status":"error", "type":0, "msj":"Necesitas permisos de administrador"}');
 		return;
 	}
-	switch(req.body.accion){
-		case "autopilot":
-			player.autopilot = (req.body.var == 'true')?true:false;
-			break;
-		case "next":
-			player.next(); break;
-		case "play":
-			player.play(); break;
-		case "stop":
-			player.stop(true); break;
-		case "analyze":
-			lib.analyze();
-			socket.broadcastState({state:"libRefresh"});
-			break;
-		case "exit":
-			process.exit(0); break;
-	}
+
+	res.send(JSON.stringify({status:"ok", msj: command(req.body.accion,req.body.val,true)} ) ) ;
 });
 
 // Playlist

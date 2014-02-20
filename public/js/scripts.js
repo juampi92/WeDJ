@@ -5,6 +5,8 @@ $(function(){
 		modals = {
 		$auth: $parent.children('#authModal'),
 		$offline: $parent.children('#offlineModal'),
+		$libManager: $parent.children('#libsModal'),
+		$exitConfirm: $parent.children('#exitModal'),
 	},
 	// --------------------------------------------------------------------------------------
 	// Auth
@@ -16,6 +18,7 @@ $(function(){
 		$alert: null,
 		id: null,
 		name: '',
+		admin: false,
 		init: function( modal ){
 			this.$modal = modal;
 			this.$modal.modal({backdrop:'static', keyboard: false, show:false});
@@ -129,7 +132,131 @@ $(function(){
 			} else
 				return true;
 		}
+	},
+	// --------------------------------------------------------------------------------------
+	// Admin Panel
+	// --------------------------------------------------------------------------------------
+	Admin = {
+		$modalLib: null,
+		$modalExit: null,
+		$adminMenu: null,
+		$autoPilot: null,
+
+		libs: {
+			$libList: null,
+			$libExclList: null,
+			$libInputs: null,
+		},
+
+		init: function(){
+			if ( is_admin ) {
+				this.$modalLib = modals.$libManager;
+				this.$modalExit = modals.$exitConfirm;
+
+				this.$modalLib.modal({show:false});
+				this.$modalExit.modal({show:false});
+
+				this.$adminMenu = $('ul.adminMenu');
+				this.$autoPilot = this.$adminMenu.children('li.auto-pilot');
+				
+				this.libs.$libList = this.$modalLib.find('.modal-body .biblio ul');
+				this.libs.$libExclList = this.$modalLib.find('.modal-body .biblioexcl ul');
+				this.libs.$libInputs = this.$modalLib.find('.modal-body input');
+
+				this.clickEvents();
+			}
+		},
+		clickEvents: function(){
+			var self = this;
+			
+			// Menu select:
+			this.$adminMenu.on('click', 'li a', function(e){
+				$this = $(this);
+				switch ( $this.data('accion') ) {
+                    // libs autop rep cmd play stop next exit
+                    case "libs":
+                    	self.$modalLib.modal('show');
+                    	self.libModal();
+                    	break;
+					case "autop":
+						self.send("autopilot",null,null);
+					case "rep":
+						var cmd = $this.data('cmd');
+						if ( ! (cmd == 'play' || cmd == 'stop' || cmd == 'next') ) return;
+						self.send(cmd,null,null);
+						break;
+					case "exit":
+						self.$modalExit.modal('show');
+						break;
+				}
+			});
+			// Exit server button:
+			this.$modalExit.find('.modal-footer button.btn-primary').click(function(e){
+				self.send("exit");
+				self.$modalExit.modal('hide');
+			});
+			// Libs add:
+			this.libs.$libInputs.keypress(function(e) {
+        		if(e.which != 13) return;
+					
+				var $this = $(this);
+				if ( $this.val() == '' ) return;
+				
+				var dest = ($this.data('cmd') == "addlib")? self.libs.$libList : self.libs.$libExclList ;
+				self.load($this.data('cmd') , dest , $this.val() );
+
+				$this.val('');
+			});
+			// Libs delete:
+			this.$modalLib.find('.modal-body ul').on('click','li span',function(){
+				var $this = $(this),
+					$li = $this.parent(),
+					$ul = $li.parent();
+
+				self.load( $ul.data('cmd') , $ul , $li.children('nom').html() );
+			});
+		},
+		send: function( accion_ , val_ , callback){
+			$.post( '/api/admin', {accion:accion_,val:val_} , callback );
+		},
+		setAutopilot: function( val ){
+			if ( ! is_admin ) return;
+			if ( val )
+				this.$autoPilot.addClass('active');
+			else
+				this.$autoPilot.removeClass('active');
+		},
+		changeState: function(nuevo){
+			if ( ! is_admin )return;
+			if ( nuevo == "stop" || nuevo == "end" )
+				this.$adminMenu.removeClass('statePlay');
+			else
+				this.$adminMenu.addClass('statePlay');
+		},
+		libModal: function(){
+			this.load("showlibs",this.libs.$libList);
+			this.load("showexc",this.libs.$libExclList);
+		},
+		load: function(param, dest , args){
+			var self = this;
+			this.send(param,args,function(data){
+				dest.empty();
+				data = JSON.parse(data);
+				for (var i = 0; i < data.msj.length; i++)
+					self.newListItem(data.msj[i],dest);
+			});
+		},
+		newListItem: function(nom,dest){
+			dest.append(
+				$("<li></li>").addClass('list-group-item').append(
+					$("<span></span>").addClass("glyphicon glyphicon-remove")
+				).append($("<nom></nom>").html(nom)
+				)
+			);
+		}
 	};
+
+	Admin.init();
 
 	// --------------------------------------------------------------------------------------
 	// Library Tree
@@ -342,6 +469,7 @@ $(function(){
 	};
 	NowListening.prototype.renderStatus = function(status){
 		this.$status.attr('class','glyphicon').addClass(this.icons[status]);//glyphicon-play
+		Admin.changeState(status);
 	};
 	NowListening.prototype.clear = function(){
 		this.$status.attr('class','glyphicon').addClass(this.icons["stop"]);
@@ -490,6 +618,8 @@ $(function(){
 			case "auto": current.renderStatus("auto"); break;
 			case "analyze": current.clear(); playlist.clear(); fSfiles.clear(); fSfolders.clear(); break;
 			case "votenext": playboard.set(data.cant); break;
+			case "autopilot_true": Admin.setAutopilot(true); break;
+			case "autopilot_false": Admin.setAutopilot(false); break;
 		}
 	});
 	// Connection events
@@ -531,11 +661,15 @@ $(function(){
 		}
 	});
 
+// Overall listeners:
 	// Ajax Error
 	$( document ).ajaxError(function(){
 		console.log("Ajax Error");
 		Offline.popup();
 	});
+	$('ul.dropdown-menu > li.dropdown-header').click(function(e) {
+        e.stopPropagation();
+    });
 
 	var start = function(){
 		usuarios.load();
@@ -544,5 +678,6 @@ $(function(){
 		playlist.load();		
 	};
 	start();
+
 
 });
