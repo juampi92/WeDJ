@@ -7,7 +7,7 @@ html
       .container.fixwidth
         .navbar-header
           button.navbar-toggle.nav-keepback(type='button', data-toggle='collapse', data-target='.navbar-collapse')
-            span.sr-only Navegacion
+            span.sr-only #{lang.nav.navigation}
             span.icon-bar
             span.icon-bar
             span.icon-bar
@@ -15,18 +15,18 @@ html
             a.navbar-brand
               span.icons
                 span.glyphicon.glyphicon-music
-              span.song Cargando...
+              span.song #{lang.loading}...
         .navbar-collapse.collapse
           ul.nav.navbar-nav.navbar-right.nav-keepback
             li
               a.voteNext(href="#")
                 span.glyphicon.glyphicon-forward
-                span.descr Siguiente canción
+                span.descr #{lang.nav.nextSong}
                 span.badge
             if admin
               li.dropdown
                 a.dropdown-toggle(href='#', data-toggle='dropdown')
-                  | Opciones
+                  | #{lang.nav.options}
                   b.caret
                 ul.dropdown-menu.adminMenu
                   li.dropdown-header #{ip}
@@ -34,31 +34,31 @@ html
                   li
                     a(href='#',data-accion='libs')
                       span.glyphicon.glyphicon-list-alt
-                      |Bibliotecas
+                      |#{lang.nav.libs}
                   li.auto-pilot.active
                     a(href='#',data-accion='autop')
                       span.glyphicon.glyphicon-ok
                       span.glyphicon.glyphicon-random
                       |Auto-pilot
                   li.divider
-                  li.dropdown-header Reproducción
+                  li.dropdown-header #{lang.nav.playlist}
                   li.buttonPlay
                     a(href='#',data-accion='rep',data-cmd='play')
                       span.glyphicon.glyphicon-play
-                      |Play
+                      |#{lang.nav.play}
                   li.buttonStop
                     a(href='#',data-accion='rep',data-cmd='stop')
                       span.glyphicon.glyphicon-stop
-                      |Stop
+                      |#{lang.nav.stop}
                   li
                     a(href='#',data-accion='rep',data-cmd='next')
                       span.glyphicon.glyphicon-forward
-                      |Next
+                      |#{lang.nav.next}
                   li.divider
                   li
                     a(href='#',data-accion='exit')
                       span.glyphicon.glyphicon-off
-                      |Cerrar servidor  
+                      |#{lang.nav.exit}
     .site-wrapper
       .site-wrapper-inner
         .cover-container
@@ -67,14 +67,14 @@ html
               h3.masthead-brand WeDJ
               ul.nav.masthead-nav
                 li.active(data-dir="playlist")
-                  a.navButton(href="#") Playlist
+                  a.navButton(href="#") #{lang.header.playlist}
                 li(data-dir="library")
-                  a.navButton(href="#") Biblioteca
+                  a.navButton(href="#") #{lang.header.library}
                 li(data-dir="chat")
-                  a.navButton(href="#") Chat
+                  a.navButton(href="#") #{lang.header.chat}
                     span.badge
                 li(data-dir="about")
-                  a.navButton(href="#") Acerca
+                  a.navButton(href="#") #{lang.header.about}
           .inner.cover
             block content
 

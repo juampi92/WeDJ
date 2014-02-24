@@ -44,7 +44,7 @@ $(function(){
 			this.$send.click(function(){
 				self.$alert.hide();
 
-				if ( self.$input.val() == '' ) { self.setError("Ingresar un nombre"); return; }
+				if ( self.$input.val() == '' ) { self.setError(lang.login.empty); return; }
 				
 				self.sendAuth(self.$input.val() , function(){
 					self.$modal.modal('hide');
@@ -72,7 +72,7 @@ $(function(){
 				return true;
 			}
 			if ( fromError == true )
-				this.setError("Tenés que estar identificado para realizar eso");
+				this.setError(lang.login.must);
 			this.$modal.modal('show');
 			return false;
 		},
@@ -95,8 +95,8 @@ $(function(){
 		},
 		popup: function(verified){
 			if ( ! verified ) {
-				$titulo = this.$modal.find('h4.modal-title').html('Problemas de conección');
-				$cuerpo = this.$modal.find('.modal-body').html('O el servidor se desconectó, o hay problemas con la red local. <p>El cartel se cerrará si la conección se retoma en los próximos minutos.</p>');
+				$titulo = this.$modal.find('h4.modal-title').html(lang.modal.connecProb);
+				$cuerpo = this.$modal.find('.modal-body').html(lang.modal.connecProbInfo);
 			}
 			this.set = true;
 			this.$modal.modal('show');
@@ -112,8 +112,8 @@ $(function(){
 			var $titulo = this.$modal.find('h4.modal-title'),
 				$cuerpo = this.$modal.find('.modal-body');
 
-			$titulo.html('Servidor perdido');
-			$cuerpo.html('Se perdió la conección con el servidor por completo. <p>Para volver a acceder, refresca la página</p>');
+			$titulo.html(lang.modal.srvrLost);
+			$cuerpo.html(lang.modal.srvrLostInfo);
 		}
 	},
 	// --------------------------------------------------------------------------------------
@@ -214,6 +214,17 @@ $(function(){
 					$ul = $li.parent();
 
 				self.load( $ul.data('cmd') , $ul , $li.children('nom').html() );
+			});
+			// Libs Buttons:
+			this.$modalLib.find('.modal-content').on('click','button.btn-primary',function(){
+				var $this = $(this);
+				$this.button('loading');
+
+				console.log($this.html());
+
+				self.send($this.data('cmd'),function(d){
+					$this.button('reset');
+				});
 			});
 		},
 		send: function( accion_ , val_ , callback){
@@ -423,7 +434,7 @@ $(function(){
 			for (var i = 0; i < object.length; i++)
 				this.addSong(object[i]);
 		else
-			this.$this.append($('<li></li>').addClass('simple').html('Empty'));
+			this.$this.append($('<li></li>').addClass('simple').html(lang.empty));
 		
 	};
 	Playlist.prototype.addSong = function(songObj){
@@ -434,11 +445,11 @@ $(function(){
 	Playlist.prototype.nextSong = function(){
 		this.$this.children(":first").remove();
 		if ( this.$this.children().length == 0 )
-			this.$this.append($('<li></li>').addClass('simple').html('Empty'));
+			this.$this.append($('<li></li>').addClass('simple').html(lang.empty));
 	};
 	Playlist.prototype.clear = function(){
 		this.$this.empty();
-		this.$this.append($('<li></li>').addClass('simple').html('Empty'));
+		this.$this.append($('<li></li>').addClass('simple').html(lang.empty));
 	};
 
 	// --------------------------------------------------------------------------------------
@@ -585,7 +596,7 @@ $(function(){
 				this.add(data[i]);
 			}
 		else
-			this.$this.append($('<li></li>').addClass('simple').html('Empty'));
+			this.$this.append($('<li></li>').addClass('simple').html(lang.empty));
 	};
 	var usuarios = new Usuarios( $("ul#users") );
 
@@ -667,6 +678,7 @@ $(function(){
 		console.log("Ajax Error");
 		Offline.popup();
 	});
+	
 	$('ul.dropdown-menu > li.dropdown-header').click(function(e) {
         e.stopPropagation();
     });

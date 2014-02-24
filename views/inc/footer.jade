@@ -8,54 +8,54 @@
     .modal-dialog.modal-sm
       .modal-content
         .modal-header
-          h4.modal-title Identificate
+          h4.modal-title #{lang.modals.login}
         .modal-body
           .alert.alert-danger(style="display:none;")
           form
-            input.form-control(type="text" placeholder="Nombre de usuario")
+            input.form-control(type="text" placeholder="#{lang.modals.username}")
         .modal-footer
-          button.btn.btn-primary(type='button') Ingresar
+          button.btn.btn-primary(type='button') #{lang.modals.enter}
   #offlineModal.modal.fade.bs-modal-sm(tabindex='-1', role='dialog', aria-labelledby='offlineModal', aria-hidden='false')
     .modal-dialog.modal-sm
       .modal-content
         .modal-header
-          h4.modal-title Servidor desconectado
+          h4.modal-title #{lang.modals.serverOff}
         .modal-body
-          |El servidor fue desconectado. 
-          p El cartel desaparecerá si se vuelve a conectar el servidor dentro de los próximos minutos.
+          |#{lang.modals.serverDisconnected}
+          p #{lang.modals.serverDisInfo}
   if admin
     #libsModal.modal.fade.bs-modal-sm(tabindex='-1', role='dialog', aria-labelledby='libsModal', aria-hidden='false')
       .modal-dialog.modal-sm
         .modal-content
           .modal-header
             button.close(type="button",data-dismiss="modal",aria-hidden="true") &times;
-            h4.modal-title Administrar Bibliotecas
+            h4.modal-title #{lang.modals.manLibs}
           .modal-body
             .biblio.panel.panel-default
               .panel-body
-                h4 Bilbiotecas
+                h4 #{lang.modals.libs}
                 ul.list-group(data-cmd="rmlib")
               .panel-footer
-                input.form-control(type="text",data-cmd="addlib",placeholder="Carpeta a agregar")
+                input.form-control(type="text",data-cmd="addlib",placeholder="#{lang.modals.folderToAdd}")
             .biblioexcl.panel.panel-default
               .panel-body
-                h4 Excluyentes
+                h4 #{lang.modals.excludes}
                 ul.list-group(data-cmd="rmlibexc")
               .panel-footer
-                input.form-control(type="text",data-cmd="addlibexc",placeholder="Carpeta a excluir")
-            button.btn.btn-primary(type="button") Forzar Analisis
+                input.form-control(type="text",data-cmd="addlibexc",placeholder="#{lang.modals.folderToExclude}")
+            button.btn.btn-primary(type="button",data-cmd="analyze",data-loading-text="#{lang.modals.analyzing}...") #{lang.modals.forceAnalyze}
           .modal-footer
-            button.btn.btn-default(type="button",data-dismiss="modal") Cerrar
-            button.btn.btn-primary(type="button") Guardar config
+            button.btn.btn-default(type="button",data-dismiss="modal") #{lang.close}
+            button.btn.btn-primary(type="button",data-cmd="savecfg",data-loading-text="#{lang.saving}...") #{lang.modals.savecfg}
     #exitModal.modal.fade.bs-modal-sm(tabindex='-1', role='dialog', aria-labelledby='exitModal', aria-hidden='false')
       .modal-dialog.modal-sm
         .modal-content
           .modal-header
             button.close(type="button",data-dismiss="modal",aria-hidden="true") &times;
-            h4.modal-title Cerrar el servidor
+            h4.modal-title #{lang.nav.exit}
           .modal-body
-            |¿Estás seguro que querés cerrar el servidor?
+            |#{lang.modals.exitConfirm}
           .modal-footer
-            button.btn.btn-default(type="button",data-dismiss="modal") Cancelar
-            button.btn.btn-primary(type="button") Cerrar el servidor
+            button.btn.btn-default(type="button",data-dismiss="modal") #{lang.cancel}
+            button.btn.btn-primary(type="button") #{lang.nav.exit}
 include scripts

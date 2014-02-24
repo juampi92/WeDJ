@@ -5,7 +5,8 @@
 	},
 	"config": {
 		"saved":"Config Saved",
-		"IP":"Server IP"
+		"IP":"Server IP",
+		"serverStarted":"Server created in: "
 	},
 	"playlist":{
 		"notExists":"Song doesn't exists",
@@ -66,6 +67,70 @@
 			"msg":"message",
 			"lang_code":"lang_code",
 			"exit":"Ends the app properly"
+		}
+	},
+	"api":{
+		"notLogged":"You are not logged in",
+		"logged":"You are logged in",
+		"msg_sent":"Message sent",
+		"nameInUse":"Name already taken",
+		"loggedAs":"Logged as %1",
+		"voteSent":"Vote sent",
+		"adminAuth":"Need admin rights",
+		"songAlready":"Song already in playlist",
+		"songAdded":"Song added"
+	},
+	"view":{
+		"header":{
+			"playlist":"Playlist",
+			"library":"Library",
+			"chat":"Chat",
+			"about":"About"
+		},
+		"nav":{
+			"navigation":"Navigation",
+			"nextSong":"Next song",
+			"options":"Options",
+			"libs":"Libraries",
+			"playlist":"Playlist",
+			"play":"Play",
+			"stop":"Stop",
+			"next":"Next",
+			"exit":"Close server"
+		},
+		"modals":{
+			"login":"Log In",
+			"username":"Username",
+			"enter":"Submit",
+			"serverOff":"Server disconnected",
+			"serverDisconnected":"The server was disconnected.",
+			"serverDisInfo":"This sign will dissapear if the server gets online in the next few minutes.",
+			"manLibs":"Manage libraries",
+			"libs":"Libraries",
+			"excludes":"Excludes",
+			"folderToAdd":"Folder to add",
+			"folderToExclude":"Folder to exclude",
+			"forceAnalyze":"Force Analysis",			
+			"analyzing":"Analyzing",
+			"savecfg":"Save config",
+			"exitConfirm":"Are you sure you want to close the server?"
+		},
+		"js":{
+			"empty":"Empty",
+			"login":{
+				"empty":"Fill your name",
+				"must":"You need to be logged in to do that"
+			},
+			"modal":{
+				"connecProb":"Connection problems",
+				"connecProbInfo":"Either the server was disconnected, or there are problems in the local network. <p>This sign will close if the connection is resumed in the next few minutes.</p>",
+				"srvrLost":"Server lost",
+				"srvrLostInfo":"We completely lost connection to the server. <p>Refresh the page to access again</p>"
+			},
+			"loading":"Loading",
+			"cancel":"Cancel",
+			"close":"Close",
+			"saving":"Saving"
 		}
 	}
 }

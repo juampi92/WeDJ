@@ -5,7 +5,8 @@
 	},
 	"config": {
 		"saved":"Config guardada",
-		"IP":"IP del servidor"
+		"IP":"IP del servidor",
+		"serverStarted":"Servidor creado en: "
 	},
 	"playlist":{
 		"notExists":"El tema no existe",
@@ -66,6 +67,70 @@
 			"msg":"mensaje",
 			"lang_code":"codigo_idioma",
 			"exit":"Termina gentilmente la aplicación"
+		}
+	},
+	"api":{
+		"notLogged":"No estas loggeado",
+		"logged":"Estas loggeado",
+		"msg_sent":"Mensaje enviado",
+		"nameInUse":"Nombre en uso",
+		"loggedAs":"Identificado como %1",
+		"voteSent":"Voto enviado",
+		"adminAuth":"Necesitas permisos de administrador",
+		"songAlready":"La cancion ya esta en la playlist",
+		"songAdded":"Cancion agregada"
+	},
+	"view":{
+		"header":{
+			"playlist":"Playlist",
+			"library":"Biblioteca",
+			"chat":"Chat",
+			"about":"Acerca de"
+		},
+		"nav":{
+			"navigation":"Navegacion",
+			"nextSong":"Siguiente canción",
+			"options":"Opciones",
+			"libs":"Bibliotecas",
+			"playlist":"Reproducción",
+			"play":"Play",
+			"stop":"Stop",
+			"next":"Next",
+			"exit":"Cerrar servidor"
+		},
+		"modals":{
+			"login":"Identificate",
+			"username":"Nombre de usuario",
+			"enter":"Ingresar",
+			"serverOff":"Servidor desconectado",
+			"serverDisconnected":"El servidor fue desconectado.",
+			"serverDisInfo":"El cartel desaparecerá si se vuelve a conectar el servidor dentro de los próximos minutos.",
+			"manLibs":"Administrar Bibliotecas",
+			"libs":"Bilbiotecas",
+			"excludes":"Excluyentes",
+			"folderToAdd":"Carpeta a agregar",
+			"folderToExclude":"Carpeta a excluir",
+			"forceAnalyze":"Forzar Analisis",			
+			"analyzing":"Analizando",
+			"savecfg":"Guardar config",
+			"exitConfirm":"¿Estás seguro que querés cerrar el servidor?"
+		},
+		"js":{
+			"empty":"Vacio",
+			"login":{
+				"empty":"Ingresar un nombre",
+				"must":"Tenés que estar identificado para realizar eso"
+			},
+			"modal":{
+				"connecProb":"Problemas de conección",
+				"connecProbInfo":"O el servidor se desconectó, o hay problemas con la red local. <p>El cartel se cerrará si la conección se retoma en los próximos minutos.</p>",
+				"srvrLost":"Servidor perdido",
+				"srvrLostInfo":"Se perdió la conección con el servidor por completo. <p>Para volver a acceder, refresca la página</p>"
+			},
+			"loading":"Cargando",
+			"cancel":"Cancelar",
+			"close":"Cerrar",
+			"saving":"Guardando"
 		}
 	}
 }

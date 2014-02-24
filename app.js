@@ -28,7 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 /**
  * This App
  */
-var lang = require('./lang/lang.js').setLang('es'),
+var lang = require('./lang/lang.js').setLang(config.getLang()),
 	lib = require('./lib/library.js')(lang),
 	users = require('./lib/users.js')(lang),
 	player = require('./lib/player.js')(lib,lang),
@@ -75,7 +75,9 @@ app.get('/', function(req,res){
 	res.render('index', {
 		title: 'WeDJ',
 		ip: ip[0]+':'+app.get('port'),
-		admin: users.isAdmin(req.connection.remoteAddress)
+		admin: users.isAdmin(req.connection.remoteAddress),
+		lang:lang.get("view"),
+		langjs:JSON.stringify(lang.get("view.js"))
 	})
 });
 
@@ -85,20 +87,20 @@ app.get('/', function(req,res){
 // Auth
 app.get('/auth',function(req,res){
 	if ( ! users.isLogged(req.connection.remoteAddress) )
-		res.send('{"status":"error","type":1, "msj":"No estas loggeado","admin":"'+users.isAdmin(req.connection.remoteAddress)+'"}');
+		res.send('{"status":"error","type":1, "msj":"'+lang.get("api.notLogged")+'","admin":"'+users.isAdmin(req.connection.remoteAddress)+'"}');
 	else {
 		var usr = users.getUserfromIP(req.connection.remoteAddress);
-		res.send('{"status":"ok","msj":"Estas loggeado","id":'+usr.id+',"name":"'+usr.name+'","admin":"'+users.isAdmin(req.connection.remoteAddress)+'"}');
+		res.send('{"status":"ok","msj":"'+lang.get("api.logged")+'","id":'+usr.id+',"name":"'+usr.name+'","admin":"'+users.isAdmin(req.connection.remoteAddress)+'"}');
 	}
 		
 });
 
 app.post('/auth',function(req,res){
 	if ( users.nameUsed(req.body.name) ) {
-		res.send('{"status":"error","type":3, "msj":"Nombre en uso"}'); return;
+		res.send('{"status":"error","type":3, "msj":"'+lang.get("api.nameInUse")+'"}'); return;
 	}
 	var id = users.log(req.connection.remoteAddress,req.body.name);
-	res.send('{"status":"ok", "msj":"Identificado como '+req.body.name+'", "id":'+id+' , "admin":"'+users.isAdmin(req.connection.remoteAddress)+'"}');
+	res.send('{"status":"ok", "msj":"'+lang.trans("api.loggedAs" , req.body.name)+'", "id":'+id+' , "admin":"'+users.isAdmin(req.connection.remoteAddress)+'"}');
 });
 
 app.get('/on',function(req,res){
@@ -108,9 +110,9 @@ app.get('/on',function(req,res){
 // Chat
 app.post('/chat', function(req, res){
 	if ( ! users.isLogged(req.connection.remoteAddress) ) {
-		res.send('{"status":"error", "type":1, "msj":"No estas loggeado"}'); return;
+		res.send('{"status":"error", "type":1, "msj":"'+lang.get("api.notLogged")+'"}'); return;
 	}
-	res.send('{"status":"ok", "msj":"Mensaje enviado"}');
+	res.send('{"status":"ok", "msj":"'+lang.get("api.msg_sent")+'"}');
 	socket.broadcastChat({user:users.getName(req.connection.remoteAddress),msj:req.body.mensaje});
 });
 
@@ -129,17 +131,17 @@ app.post('/api/nav', function(req, res){
 // Next
 app.get('/api/votenext', function(req, res){
 	if ( ! users.isLogged(req.connection.remoteAddress) ) {
-		res.send('{"status":"error", "type":1, "msj":"No estas loggeado"}'); return;
+		res.send('{"status":"error", "type":1, "msj":"'+lang.get("api.notLogged")+'"}'); return;
 	}
 	playlist.voteNext( users.getID(req.connection.remoteAddress) );
 
-	res.send('{"status":"ok", "msj":"Voto enviado"}');
+	res.send('{"status":"ok", "msj":"'+lang.get("api.voteSent")+'"}');
 });
 
 // Admin
 app.post('/api/admin', function(req, res){
 	if ( ! users.isAdmin(req.connection.remoteAddress) ) {
-		res.send('{"status":"error", "type":0, "msj":"Necesitas permisos de administrador"}');
+		res.send('{"status":"error", "type":0, "msj":"'+lang.get("api.adminAuth")+'"}');
 		return;
 	}
 
@@ -149,13 +151,13 @@ app.post('/api/admin', function(req, res){
 // Playlist
 app.get('/api/queue/:id', function(req, res){
 	if ( ! users.isLogged(req.connection.remoteAddress) ) {
-		res.send('{"status":"error", "type":1, "msj":"No estas loggeado"}'); return;
+		res.send('{"status":"error", "type":1, "msj":"'+lang.get("api.notLogged")+'}'); return;
 	}
 	if ( playlist.isSong(req.params.id) ) {
-		res.send('{"status":"error", "type":2, "msj":"La cancion ya esta en la playlist"}'); return;
+		res.send('{"status":"error", "type":2, "msj":"'+lang.get("api.songAlready")+'"}'); return;
 	}
 	player.playlist.addSong(lib.files[req.params.id],users.getID(req.connection.remoteAddress));
-	res.send('{"status":"ok","msj":"Cancion agregada"}');
+	res.send('{"status":"ok","msj":"'+lang.get("api.songAdded")+'"}');
 
 });
 
@@ -173,7 +175,7 @@ var server = http.createServer(app),
 	io = io.listen(server, { log: false });
 
 server.listen(app.get('port'), function(){
-	console.log('Servidor creado en: '.green + (ip[0]+':'+app.get('port')).grey);
+	console.log(lang.get("config.serverStarted").green + (ip[0]+':'+app.get('port')).grey);
 });
 
 // Socket.io
@@ -186,7 +188,6 @@ socket.init(io.sockets);
 *	TO-DO List:
 *
 *		Smart playlist (orden de usuario, orden de votos)
-*		Toolbar: StatusIcon, Login/changeUsername and Options (chat notif(?)), VoteNext
 *		ID3 !!!
 *
 */
