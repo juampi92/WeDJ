@@ -3,7 +3,7 @@ WeDJ
 
 Smart playlist player for your Local Network.
 
-Launch the server on the machine that connected to the audio device, and let people that are connected to your Local Network create a playlist based on the music that is on your computer.
+Launch the server on the machine that's connected to the speakers, and let people that are connected to your Local Network create a playlist based on the music that is on your computer.
 
 Install
 ==================
@@ -49,14 +49,13 @@ To learn everything about the commands available:
 
 To-Do
 ==================
- * Smart Playlist
- * Admin Panel
+ * Smart Playlist (voting songs in playlist to re-arrange them)
  * About Tab
- * Vote Playlist
  * ID3
- * Dabatase (sqlite3 ?)
+ * Dabatase (sqlite3 ?) for file search
+ * Design problems (bigger for smartphones, no send button in chat, fix enter bug logging in)
 
 Contact
 ==================
  * GitHub: [github.com/juampi92](https://github.com/juampi92)
- * Mail: <juampi92@gmail.com>
+ * Twitter: [@Juampi_92](https://twitter.com/Juampi_92)
