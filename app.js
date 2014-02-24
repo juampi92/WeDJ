@@ -28,12 +28,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 /**
  * This App
  */
-var lib = require('./lib/library.js'),
-	users = require('./lib/users.js'),
-	player = require('./lib/player.js')(lib),
-	playlist = require('./lib/playlist.js')(users),
+var lang = require('./lang/lang.js').setLang('es'),
+	lib = require('./lib/library.js')(lang),
+	users = require('./lib/users.js')(lang),
+	player = require('./lib/player.js')(lib,lang),
+	playlist = require('./lib/playlist.js')(users,lang),
 	socket = require('./lib/socketManager.js'),
 	ip = require('./lib/localip.js');
+
 
 users.init( socket.broadcastUsers , ip );
 
@@ -58,7 +60,7 @@ playlist.setPlayer(player);
 
 // ---------------------------
 // Command line interpreter
-var command = require('./lib/commandInterpreter.js')({lib:lib,player:player,playlist:playlist,socket:socket,ip:ip,users:users});
+var command = require('./lib/commandInterpreter.js')({lib:lib,player:player,playlist:playlist,socket:socket,users:users,ip:ip[0]+':'+app.get('port'),lang:lang});
 
 process.on('exit', function(code) {
 	//console.log('About to exit with code:', code);
@@ -141,7 +143,7 @@ app.post('/api/admin', function(req, res){
 		return;
 	}
 
-	res.send(JSON.stringify({status:"ok", msj: command(req.body.accion,req.body.val,true)} ) ) ;
+	res.send(JSON.stringify({status:"ok", msj: command(req.body.accion,req.body.val,true)} ) );
 });
 
 // Playlist

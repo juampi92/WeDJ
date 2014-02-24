@@ -1,0 +1,71 @@
+{
+	"error":{
+		"warning":"WARNING",
+		"error":"ERROR"
+	},
+	"config": {
+		"saved":"Config Saved",
+		"IP":"Server IP"
+	},
+	"playlist":{
+		"notExists":"Song doesn't exists",
+		"add":"%1 added %2",
+		"playing":"Playing %1"
+	},
+	"users":{
+		"logged":"%1 logged in [%2]"
+	},
+	"lib":{
+		"error": {
+			"nullInput":"Error: need to specify library"
+		},
+		"id3":{
+			"analyze":"> Analyzing ID3"
+		},
+		"updated": "Library updated",
+		"added":"> %1 added to the library",
+		"excluded":"> %1 excluded from library",
+		"removed":"> %1 removed from library",
+		"unexcluded":"> %1 no longer excluded from library",
+		"libsLoaded":"Libraries loaded",
+		"savingSongs":"Saving Music",
+		"savingPaths":"Saving Folders",
+		"starter":"Analyzing the library is needed. There are no song available.\nUse: \n\taddlib <absolutepath>\n\tanalyze"
+	},
+	"cmd":{
+		"langChange":"Language set to: ",
+		"nullInput":"Missing arguments",
+		"wrong":"Unknown command. Type 'help' for more info",
+		"help":{
+			"correctUse":"Correct use of commands",
+			"nav":"Navigation",
+			"next":"Next song in the playlist",
+			"stop":"Stops the music",
+			"play":"Resumes the song",
+			"lib":"Library",
+			"analyze":"Force analyze the library",
+			"addlib":"Adds a folder to the library",
+			"addlibexc":"Excludes a folder from the library",
+			"showlibs":"Shows all the folders in the library",
+			"showexc":"Shows all the excluded folders from the library",
+			"navFolder":"Shows all the sub-folders of the given folder",
+			"navSongs":"Shows all songs inside the give folder",
+			"repr":"Playlisting",
+			"queue":"Adds a song to the playlist",
+			"list":"Shows all current songs in the playlist",
+			"song":"Displays the info of the given song",
+			"current":"Shows the current playing song",
+			"state":"Shows the current state of the player",
+			"lang":"Sets the current language",
+			"ip":"Shows the Local IP in which the server is hosted",
+			"savecfg":"Saves the config",
+			"say":"Sends a message to the chat",
+			"abs_path":"absolutepath",
+			"folder":"folder",
+			"song_id":"songID",
+			"msg":"message",
+			"lang_code":"lang_code",
+			"exit":"Ends the app properly"
+		}
+	}
+}
