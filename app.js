@@ -9,7 +9,8 @@ var express = require('express'),
 
 
 var app = express(),
-	config = require('./lib/settings.js');
+	config = require('./lib/settings.js'),
+	v = require('./lib/version_manager.js');
 
 // all environments
 app.set('port', process.env.PORT || 3000);
