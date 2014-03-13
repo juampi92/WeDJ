@@ -33,24 +33,29 @@ $(function(){
 		checkLogged: function(){
 			var self = this;
 			$.getJSON( '/auth' , function( res ) {
-				if ( res.status == "ok" ) {
-					self.id = res.id;
-					self.name = res.name;
-				}
+				if ( res.status == "ok" )
+					self.login_success(res.id,res.name);
 			});
 		},
 		clickEvent: function(){
 			var self = this;
 			this.$send.click(function(){
-				self.$alert.hide();
+				self.send();
+			});
+			this.$input.keypress(function(e) {
+        		if(e.which == 13) self.send();
+			});
+		},
+		send: function() {
+			self = this;
+			this.$alert.hide();
 
-				if ( self.$input.val() == '' ) { self.setError(lang.login.empty); return; }
+			if ( this.$input.val() == '' ) { this.setError(lang.login.empty); return; }
 				
-				self.sendAuth(self.$input.val() , function(){
-					self.$modal.modal('hide');
-				}, function(data){
-					self.setError(msj);
-				});
+			this.sendAuth(this.$input.val() , function(){
+				self.$modal.modal('hide');
+			}, function(data){
+				self.setError(msj);
 			});
 		},
 		sendAuth: function(nom , success , error ){
@@ -60,8 +65,7 @@ $(function(){
 				if ( msj !== true ) {
 					if ( error != null ) error(msj);
 				} else {
-					self.id = data.id;
-					self.name = self.$input.val();
+					self.login_success(data.id,self.$input.val());
 					if ( success != null ) success();
 				}				
 			});
@@ -79,6 +83,11 @@ $(function(){
 		setError: function(error){
 			this.$alert.show();
 			this.$alert.html(error);
+		},
+		login_success:function(id,name){
+			this.id = id;
+			this.name = name;
+			Notifications.show(lang.notif.logged);
 		}
 
 	},
@@ -133,6 +142,47 @@ $(function(){
 				return true;
 		}
 	},
+	// --------------------------------------------------------------------------------------
+	// Notificaciones
+	// --------------------------------------------------------------------------------------
+
+	Notifications = {
+		$pop: null,
+		abiertas: 0,
+		init: function(){
+			this.$pop = $('#playingsong .icons');
+			this.$pop.popover({
+				title: lang.notif.title,
+				trigger:'manual',
+				placement: 'bottom',
+				content:'a'
+				//animation 	boolean 	true 	apply a CSS fade transition to the popover
+				//html 	boolean 	false 	Insert HTML into the popover. If false, jQuery's text method will be used to insert content into the DOM. Use text if you're worried about XSS attacks.
+				//placement 	top | bottom | left | right | auto.
+				//selector 	string 	false 	if a selector is provided, popover objects will be delegated to the specified targets. In practice, this is used to enable dynamic HTML content to have popovers added. See this and an informative example.
+				//trigger
+				//title
+				//content
+				//delay: { show: 500, hide: 100 }
+			});
+			this.events();
+		},
+		show:function(cont){
+			this.$pop.popover('show');
+			this.$pop.parent().children('.popover').children('.popover-content').html(cont);
+		},
+		events: function(){
+			var self = this;
+			this.$pop.on('shown.bs.popover', function () {
+				self.abiertas++;
+				setTimeout( self.close , 3000 );
+			});
+		},
+		close:function(){
+			if ( --Notifications.abiertas == 0 ) Notifications.$pop.popover('hide');
+		}
+	}
+
 	// --------------------------------------------------------------------------------------
 	// Admin Panel
 	// --------------------------------------------------------------------------------------
@@ -268,6 +318,7 @@ $(function(){
 	};
 
 	Admin.init();
+	Notifications.init();
 
 	// --------------------------------------------------------------------------------------
 	// Library Tree
@@ -468,15 +519,16 @@ $(function(){
 	NowListening.prototype.load = function(){
 		var self = this;
 		$.getJSON( '/api/current' , function(data){
-			self.renderListening(data.listening);
+			self.renderListening(data.listening,true);
 			self.renderStatus(data.status);
 		});
 	};
-	NowListening.prototype.renderListening = function(song){
+	NowListening.prototype.renderListening = function(song,load=false){
 		var agregar = ' - ';
 		if ( ! $.isEmptyObject(song) ) agregar = song.path;
 		this.$listening.html( agregar );
 		playboard.reset();
+		if ( !load && song.added == Auth.id) Notifications.show(lang.notif.yourSong);
 	};
 	NowListening.prototype.renderStatus = function(status){
 		this.$status.attr('class','glyphicon').addClass(this.icons[status]);//glyphicon-play
@@ -674,10 +726,11 @@ $(function(){
 
 // Overall listeners:
 	// Ajax Error
-	$( document ).ajaxError(function(){
+	/*$( document ).ajaxError(function(e){
 		console.log("Ajax Error");
-		Offline.popup();
-	});
+		console.log(e);
+		//Offline.popup();
+	});*/
 	
 	$('ul.dropdown-menu > li.dropdown-header').click(function(e) {
         e.stopPropagation();
@@ -689,7 +742,4 @@ $(function(){
 		current.load();
 		playlist.load();		
 	};
-	start();
-
-
 });

@@ -130,7 +130,12 @@
 			"loading":"Cargando",
 			"cancel":"Cancelar",
 			"close":"Cerrar",
-			"saving":"Guardando"
+			"saving":"Guardando",
+			"notif":{
+				"title":"Notificación",
+				"logged":"Loggeado exitosamente",
+				"yourSong":"Reproduciendo canción que agregaste"
+			}
 		}
 	}
 }

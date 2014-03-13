@@ -152,7 +152,7 @@ app.post('/api/admin', function(req, res){
 // Playlist
 app.get('/api/queue/:id', function(req, res){
 	if ( ! users.isLogged(req.connection.remoteAddress) ) {
-		res.send('{"status":"error", "type":1, "msj":"'+lang.get("api.notLogged")+'}'); return;
+		res.send('{"status":"error", "type":1, "msj":"'+lang.get("api.notLogged")+'"}'); return;
 	}
 	if ( playlist.isSong(req.params.id) ) {
 		res.send('{"status":"error", "type":2, "msj":"'+lang.get("api.songAlready")+'"}'); return;

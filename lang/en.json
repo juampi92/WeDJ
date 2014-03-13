@@ -130,7 +130,12 @@
 			"loading":"Loading",
 			"cancel":"Cancel",
 			"close":"Close",
-			"saving":"Saving"
+			"saving":"Saving",
+			"notif":{
+				"title":"Notification",
+				"logged":"Logged successfully",
+				"yourSong":"Playing a song you've added"
+			}
 		}
 	}
 }

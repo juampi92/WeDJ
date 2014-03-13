@@ -1,0 +1,6 @@
+settings/
+node_modules/
+*.bat
+*.exe
+*.sh
+*.rar

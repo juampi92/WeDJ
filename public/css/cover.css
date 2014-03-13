@@ -309,6 +309,18 @@ ul#chat li b{
 }
 
 /*
+* Notificaciones
+*/
+.popover > h3.popover-title{
+  color:black;
+  font-weight: bold;
+}
+
+.popover > .popover-content{
+  color:#333;
+}
+
+/*
  * Cover
  */
 
