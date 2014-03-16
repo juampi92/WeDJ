@@ -18,7 +18,8 @@
 	},
 	"lib":{
 		"error": {
-			"nullInput":"Error: especificar biblioteca"
+			"nullInput":"Error: especificar biblioteca",
+			"notexists":"Error: no existe ese directorio"
 		},
 		"id3":{
 			"analyze":"> Analizando ID3"
@@ -79,6 +80,18 @@
 		"adminAuth":"Necesitas permisos de administrador",
 		"songAlready":"La cancion ya esta en la playlist",
 		"songAdded":"Cancion agregada"
+	},
+	"autoupdater":{
+		"git_clone":"Notamos que tienes el repositorio git. Usa 'git pull' para descargar los ultimos cambios",
+		"check_up_to_date":"Tienes la ultima versión: %1",
+		"check_out_dated":"Tu versión no es la última. Tienes la %1 de %2",
+		"update_downloaded":"Update descargado en la máquina",
+		"update_not_installed":"Ya existe el update en la máquina. No es necesario descargarlo",
+		"extracted":"Extraido con exito!",
+		"download_start":"Iniciando la descarga del update: %1",
+		"download_update":"Downloading %1%",
+		"download_end":"Downloaded %1",
+		"download_error":"Error en la descarga: "
 	},
 	"view":{
 		"header":{

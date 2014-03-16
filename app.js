@@ -9,8 +9,7 @@ var express = require('express'),
 
 
 var app = express(),
-	config = require('./lib/settings.js'),
-	v = require('./lib/version_manager.js');
+	config = require('./lib/settings.js');
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -30,13 +29,26 @@ app.use(express.static(path.join(__dirname, 'public')));
  * This App
  */
 var lang = require('./lang/lang.js').setLang(config.getLang()),
-	lib = require('./lib/library.js')(lang),
+	autoupdater = require('auto-updater')({async:false,autoupdate:true});
+
+	autoupdater.on('check-up-to-date',function(v){ console.log(lang.trans("autoupdater.check_up_to_date",v)); });
+	autoupdater.on('check-out-dated',function(v_old , v){ console.log(lang.trans("autoupdater.check_out_dated",v_old,v)); });
+	autoupdater.on('update-downloaded',function(){ console.log(lang.get("autoupdater.update_downloaded")); });
+	autoupdater.on('update-not-installed',function(){ console.log(lang.get("autoupdater.update_not_installed")); });
+	autoupdater.on('extracted',function(){ console.log(" > > ".bold.cyan + lang.get("autoupdater.extracted")); });
+	autoupdater.on('download-start',function(name){ console.log(" > ".bold.cyan + lang.trans("autoupdater.download_start",name)); });
+	autoupdater.on('download-update',function(name,perc){ process.stdout.write(" > ".bold.cyan + lang.trans("autoupdater.download_update",perc) + " \033[0G"); });
+	autoupdater.on('download-end',function(name){ console.log(" > ".bold.cyan + lang.trans("autoupdater.download_end",name)); });
+	autoupdater.on('download-error',function(err){ console.log((lang.get("autoupdater.download_error")).red); });
+
+	autoupdater.forceCheck();
+
+var lib = require('./lib/library.js')(lang),
 	users = require('./lib/users.js')(lang),
 	player = require('./lib/player.js')(lib,lang),
 	playlist = require('./lib/playlist.js')(users,lang),
 	socket = require('./lib/socketManager.js'),
 	ip = require('./lib/localip.js');
-
 
 users.init( socket.broadcastUsers , ip );
 
@@ -65,9 +77,9 @@ var command = require('./lib/commandInterpreter.js')({lib:lib,player:player,play
 
 process.on('exit', function(code) {
 	//console.log('About to exit with code:', code);
-	//lib.save();
+	lib.save();
 	player.stop();
-	config.save();
+	config.save(lib);
 	socket.broadcastState({state:"off"}); // Broadcast exit
 });
 

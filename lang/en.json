@@ -18,7 +18,8 @@
 	},
 	"lib":{
 		"error": {
-			"nullInput":"Error: need to specify library"
+			"nullInput":"Error: need to specify library",
+			"notexists":"Error: that directory does not exists"
 		},
 		"id3":{
 			"analyze":"> Analyzing ID3"
@@ -79,6 +80,18 @@
 		"adminAuth":"Need admin rights",
 		"songAlready":"Song already in playlist",
 		"songAdded":"Song added"
+	},
+	"autoupdater":{
+		"git_clone":"You are using the git repository clone. Use 'git pull' to be up-to-date",
+		"check_up_to_date":"You have the lastest version: %1",
+		"check_out_dated":"Your version is outdated. You have %1 of %2",
+		"update_downloaded":"Update downloaded successfully",
+		"update_not_installed":"You already have the update. No need to download it",
+		"extracted":"Extracted successfully!",
+		"download_start":"Starting download of the update: %1",
+		"download_update":"Downloading %1%",
+		"download_end":"Downloaded %1",
+		"download_error":"Something went wrong while downloading."
 	},
 	"view":{
 		"header":{

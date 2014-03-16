@@ -1,6 +1,6 @@
 {
   "name": "WeDJ",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": {
     "name" : "@Juampi_92",
     "url" : "https://github.com/juampi92"
@@ -14,7 +14,15 @@
     "jade": "*",
     "colors": "*",
     "socket.io": ">= 0.9.16",
-    "underscore": ">= 1.6.0"
+    "underscore": ">= 1.6.0",
+    "auto-updater":"*"
   },
-  "version_control":"http://raw.github.com/juampi92/WeDJ/master/package.json"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/juampi92/WeDJ.git"
+  },
+  "auto-updater":{
+    "repo":"/juampi92/WeDJ",
+    "branch":"master"
+  }
 }

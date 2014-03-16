@@ -21,6 +21,8 @@ var lang = {
 	},
 	trans: function(string, vars){
 		var trad = this.get(string);
+		if ( typeof vars === "string" ) vars = [vars];
+		
 		for (var i = 0; i < vars.length; i++)
 			trad = trad.replace("%"+(i+1), vars[i]);
 		return trad;
