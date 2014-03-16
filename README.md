@@ -26,6 +26,7 @@ This proyect uses this node.js packages:
   * [**Colors**](https://www.npmjs.org/package/colors)
   * [**Socket.io**](http://socket.io/)
   * [**Underscore**](http://underscorejs.org/)
+  * [**Auto-Updater**](https://github.com/juampi92/auto-updater)
 
 The web app uses:
   * [**Bootstrap**](http://getbootstrap.com/)
