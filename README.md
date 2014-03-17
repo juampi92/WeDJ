@@ -28,6 +28,7 @@ This proyect uses this node.js packages:
   * [**Underscore**](http://underscorejs.org/)
   * [**Auto-Updater**](https://github.com/juampi92/auto-updater)
   * [**MusicMetadata**](https://github.com/leetreveil/musicmetadata)
+  * [**NeDB**](https://github.com/louischatriot/nedb)
 
 The web app uses:
   * [**Bootstrap**](http://getbootstrap.com/)
@@ -51,7 +52,6 @@ To learn everything about the commands available:
 
 To-Do
 ==================
- * Dabatase (nedb) for file search
  * Smart Playlist (voting songs in playlist to re-arrange them)
  * About Tab
  * Design problems (bigger for smartphones, no send button in chat)

@@ -531,7 +531,7 @@ $(function(){
 
 		this.$listening.html( agregar );
 		playboard.reset();
-		if ( !load && song && song.added == Auth.id) Notifications.show(lang.notif.yourSong);
+		if ( !load && song != undefined && song.added != null  && song.added == Auth.id) Notifications.show(lang.notif.yourSong);
 	};
 	NowListening.prototype.renderStatus = function(status){
 		this.$status.attr('class','glyphicon').addClass(this.icons[status]);//glyphicon-play
