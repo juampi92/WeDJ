@@ -489,7 +489,8 @@ $(function(){
 		
 	};
 	Playlist.prototype.addSong = function(songObj){
-		var $song = $("<a></a>").html(songObj.path).data('id',songObj.id).data('added',songObj.added),
+		var song_name = (songObj.title == '?') ? songObj.path : "<b>"+songObj.artist + "</b> - " + songObj.title ,
+			$song = $("<a></a>").html(song_name).data('id',songObj.id).data('added',songObj.added),
 			$li = $("<li></li>").addClass('mp3').append($song);
 		this.$this.append($li);
 	};
@@ -525,10 +526,12 @@ $(function(){
 	};
 	NowListening.prototype.renderListening = function(song,load=false){
 		var agregar = ' - ';
-		if ( ! $.isEmptyObject(song) ) agregar = song.path;
+		if ( ! $.isEmptyObject(song) )
+			agregar = (song.title == '?' ) ? song.path : "<b>" + song.artist + "</b> - " + song.title;
+
 		this.$listening.html( agregar );
 		playboard.reset();
-		if ( !load && song.added == Auth.id) Notifications.show(lang.notif.yourSong);
+		if ( !load && song && song.added == Auth.id) Notifications.show(lang.notif.yourSong);
 	};
 	NowListening.prototype.renderStatus = function(status){
 		this.$status.attr('class','glyphicon').addClass(this.icons[status]);//glyphicon-play

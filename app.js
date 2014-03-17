@@ -5,7 +5,8 @@ var express = require('express'),
 	http = require('http'),
 	path = require('path'),
 	colors = require('colors'),
-	io = require('socket.io');
+	io = require('socket.io'),
+	_ = require('underscore');
 
 
 var app = express(),
@@ -48,11 +49,14 @@ var lib = require('./lib/library.js')(lang),
 	player = require('./lib/player.js')(lib,lang),
 	playlist = require('./lib/playlist.js')(users,lang),
 	socket = require('./lib/socketManager.js'),
-	ip = require('./lib/localip.js');
+	ip = require('./lib/localip.js'),
+	music_tag = require('./lib/music_tag.js')();
 
 users.init( socket.broadcastUsers , ip );
 
-lib.init();
+lib.init(function(){
+	config.setLastAnalyze(_.now());
+});
 
 lib.addExclude(config.lib.excludes);
 lib.addFolder(config.lib.folders);
@@ -67,9 +71,11 @@ lib.onAnalyze(function(){
 playlist.init( socket.broadcastList , socket.broadcastCurrentSong , socket.broadcastState );
 playlist.setForcePlay(function(){player.play();});
 
-player.init( {autopilot:true,playlist:playlist} , socket.broadcastState );
+player.init( {autopilot:true,playlist:playlist} , socket.broadcastState , music_tag );
 
 playlist.setPlayer(player);
+
+if ( music_tag.disabled() ) console.log(lang.get("error.warning").red + ": " + lang.get("require.musicmetadata"));
 
 // ---------------------------
 // Command line interpreter

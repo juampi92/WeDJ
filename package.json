@@ -15,7 +15,8 @@
     "colors": "*",
     "socket.io": ">= 0.9.16",
     "underscore": ">= 1.6.0",
-    "auto-updater":"*"
+    "auto-updater":"*",
+    "musicmetadata":">= 0.3.4"
   },
   "repository": {
     "type": "git",

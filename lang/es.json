@@ -3,6 +3,9 @@
 		"warning":"ADVERTENCIA",
 		"error":"ERROR"
 	},
+	"require":{
+		"musicmetadata":"Instala 'musicmetadata' para analizar los títulos y artistas de las canciones"
+	},
 	"config": {
 		"saved":"Config guardada",
 		"IP":"IP del servidor",

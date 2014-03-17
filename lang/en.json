@@ -3,6 +3,9 @@
 		"warning":"WARNING",
 		"error":"ERROR"
 	},
+	"require":{
+		"musicmetadata":"Install 'musicmetadata' to have the song title and the song artist"
+	},
 	"config": {
 		"saved":"Config Saved",
 		"IP":"Server IP",
