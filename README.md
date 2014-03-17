@@ -27,6 +27,7 @@ This proyect uses this node.js packages:
   * [**Socket.io**](http://socket.io/)
   * [**Underscore**](http://underscorejs.org/)
   * [**Auto-Updater**](https://github.com/juampi92/auto-updater)
+  * [**MusicMetadata**](https://github.com/leetreveil/musicmetadata)
 
 The web app uses:
   * [**Bootstrap**](http://getbootstrap.com/)
@@ -50,11 +51,10 @@ To learn everything about the commands available:
 
 To-Do
 ==================
+ * Dabatase (nedb) for file search
  * Smart Playlist (voting songs in playlist to re-arrange them)
  * About Tab
- * ID3
- * Dabatase (sqlite3 ?) for file search
- * Design problems (bigger for smartphones, no send button in chat, fix enter bug logging in)
+ * Design problems (bigger for smartphones, no send button in chat)
 
 Contact
 ==================
