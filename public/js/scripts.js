@@ -328,13 +328,13 @@ $(function(){
 		this.url = url;
 		this.musicTree = musicTree;
 		this.$active = null;
-		this.load(this.$this,'',true);
+		this.load(this.$this,'0',true);
 		this.clickEvent();
 	};
 
-	LibraryTree.prototype.load = function( $dest , path , first ){
+	LibraryTree.prototype.load = function( $dest , parent_id , first ){
 		var self = this,
-			post_data = {folder:path,dirs:"off"},
+			post_data = {folder:parent_id,dirs:"off"},
 			with_dirs = ($dest.data('loaded') != 'true');
 		if ( with_dirs )
 			post_data.dirs = "on";
@@ -350,7 +350,7 @@ $(function(){
 					if ( !first ) $dest.parent().children('span').addClass('directory');
 
 					for (var i = 0; i < res.folders.length; i++) {
-						self.addFolder($dest,res.folders[i].name,res.folders[i].path);
+						self.addFolder($dest,res.folders[i].name,res.folders[i]._id);
 					};
 
 				} else {
@@ -444,7 +444,7 @@ $(function(){
 
 	FilesTree.prototype.addFile = function( object ) {
 		var added = (object.added != null ),
-			$file = $("<a></a>").html(object.path).data('id',object.id).data('added',added),
+			$file = $("<a></a>").data('id',object["_id"]).data('added',added).html(object.path),
 			$li = $("<li></li>").addClass('mp3').append($file);
 		if ( added ) $file.addClass('disabled');
 		this.$this.append($li);
@@ -490,7 +490,7 @@ $(function(){
 	};
 	Playlist.prototype.addSong = function(songObj){
 		var song_name = (songObj.title == '?') ? songObj.path : "<b>"+songObj.artist + "</b> - " + songObj.title ,
-			$song = $("<a></a>").html(song_name).data('id',songObj.id).data('added',songObj.added),
+			$song = $("<a></a>").html(song_name).data('id',songObj._id).data('added',songObj.added),
 			$li = $("<li></li>").addClass('mp3').append($song);
 		this.$this.append($li);
 	};

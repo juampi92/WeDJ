@@ -12,6 +12,7 @@ var express = require('express'),
 var app = express();
 
 app.config = require('./lib/settings.js');
+app.db = {};
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -60,9 +61,6 @@ app.lib.init(function(){
 	app.config.setLastAnalyze(_.now());
 });
 
-app.lib.addExclude(config.lib.excludes);
-app.lib.addFolder(config.lib.folders);
-
 app.lib.load();
 app.lib.onAnalyze(function(){
 	app.player.stop();
@@ -85,8 +83,6 @@ var command = require('./lib/commandInterpreter.js')(app);
 
 // Exit handler
 process.on('exit', function(code) {
-	//console.log('About to exit with code:', code);
-	app.lib.save();
 	app.player.stop();
 	app.config.save();
 	app.socket.broadcastState({state:"off"}); // Broadcast exit
@@ -145,9 +141,18 @@ app.get('/users', function(req, res){
 
 // Navegación
 app.post('/api/nav', function(req, res){
-	var ret = {music:app.lib.navSongs(req.body.folder),folders:null};
-	if ( req.body.dirs == 'on' ) ret.folders = app.lib.navFolder(req.body.folder);
-	res.send(JSON.stringify(ret));
+	app.lib.navSongs( req.body.folder , function(canciones){
+
+		canciones.forEach(function(c){
+			if ( app.playlist.isSong(c._id) ) c.added = true;
+		});
+
+		if ( req.body.dirs == 'on' )
+			app.lib.navFolder(req.body.folder , function(carpetas){
+				res.send(JSON.stringify( {music:canciones , folders:carpetas } ));
+			});
+		else res.send(JSON.stringify( {music:canciones , folders:null } ));
+	});
 });
 
 // Next
@@ -166,8 +171,9 @@ app.post('/api/admin', function(req, res){
 		res.send('{"status":"error", "type":0, "msj":"'+app.lang.get("api.adminAuth")+'"}');
 		return;
 	}
-
-	res.send(JSON.stringify({status:"ok", msj: command(req.body.accion,req.body.val,true)} ) );
+	command(req.body.accion,req.body.val,true,function(m){
+		res.send(JSON.stringify({status:"ok", msj: m}) );
+	});
 });
 
 // Playlist
@@ -178,7 +184,7 @@ app.get('/api/queue/:id', function(req, res){
 	if ( app.playlist.isSong(req.params.id) ) {
 		res.send('{"status":"error", "type":2, "msj":"' + app.lang.get("api.songAlready")+'"}'); return;
 	}
-	app.playlist.addSong ( app.lib.files[req.params.id] , app.users.getID(req.connection.remoteAddress ) );
+	app.playlist.addSong ( req.params.id , app.users.getID(req.connection.remoteAddress ) );
 	res.send('{"status":"ok","msj":"' + app.lang.get("api.songAdded") + '"}');
 
 });
