@@ -301,6 +301,10 @@ ul#playlist li.simple:hover {
   background-color: #262626;  
 }
 
+ul#playlist li span {
+  float:right;
+}
+
 ul#chat {
   position:absolute;
   bottom:0;

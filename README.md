@@ -52,7 +52,7 @@ To learn everything about the commands available:
 
 To-Do
 ==================
- * Smart Playlist (voting songs in playlist to re-arrange them)
+ * Vote Playlist (already smart!)
  * About Tab
  * Design problems (bigger for smartphones)
 

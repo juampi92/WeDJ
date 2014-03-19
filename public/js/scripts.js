@@ -571,7 +571,8 @@ $(function(){
 	Playlist.prototype.addSong = function(songObj){
 		var song_name = (songObj.title == '?') ? songObj.path : "<b>"+songObj.artist + "</b> - " + songObj.title ,
 			$song = $("<a></a>").html(song_name).data('id',songObj._id).data('added',songObj.added),
-			$li = $("<li></li>").addClass('mp3').append($song);
+			$user = $("<span></span>").html(songObj.user_name),
+			$li = $("<li></li>").addClass('mp3').append($song).append($user);
 		this.$this.append($li);
 	};
 	Playlist.prototype.nextSong = function(){
