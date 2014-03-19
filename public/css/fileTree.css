@@ -51,7 +51,7 @@ ul.fileTree a.disabled:hover {
 }
 
 /* Core Styles */
-.fileTree li > a.folder { background: url(../img/folder.png) left top no-repeat; }
+.fileTree .folder { background: url(../img/folder.png) left top no-repeat; }
 .fileTree li.active > a.folder { background: black url(../img/folder_open.png) left top no-repeat; color:white; font-weight: bold; }
 .fileTree li span.directory { background: url(../img/directory.png) left top no-repeat; }
 .fileTree li span.expanded { background: url(../img/directory_open.png) left top no-repeat; }

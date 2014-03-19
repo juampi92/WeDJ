@@ -20,12 +20,15 @@ $(function(){
 		name: '',
 		admin: false,
 		init: function( modal ){
+			var self = this;
+
 			this.$modal = modal;
 			this.$modal.modal({backdrop:'static', keyboard: false, show:false});
 			this.$input = modal.find('form input');
 			this.$send = modal.find('button');
 			this.$alert = modal.find('.alert.alert-danger');
-
+			this.$modal.on('shown.bs.modal', function(e){ self.$input.focus(); });
+			
 			this.clickEvent();
 			// Try login:
 			this.checkLogged();
@@ -469,6 +472,7 @@ $(function(){
 		this.$container = container;
 		this.$padre = input.parent().parent().parent();
 		this.url = url;
+		this.lastSearch = '';
 		this.events();
 	};
 
@@ -486,7 +490,9 @@ $(function(){
 			var $inp = $(this);
 			if ( $inp.val() == '' ) self.setSearchBox(false);
 			else {
-				if ( $inp.val().length > 3 ) {
+				if ( $inp.val().length > 3 && $inp.val() != self.lastSearch ) {
+					self.lastSearch = $inp.val();
+
 					$.post( self.url , {query: $inp.val() } , function( data ){
 						var res = JSON.parse(data);
 						self.setSearchBox(true);
