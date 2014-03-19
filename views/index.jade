@@ -8,7 +8,7 @@ block content
     #tab_library
       h1.cover-heading #{lang.header.library}
       .container-fluid
-        form.form-inline(name="buscador" style="float:right;margin-top:-50px;")
+        form.form-inline(name="buscador")
           .form-group.has-feedback
             input#searchbox(type="text" class="form-control" placeholder="Search")
             span.glyphicon.glyphicon-remove.form-control-feedback
@@ -27,7 +27,7 @@ block content
           .col-xs-8.scroller.scroller-left
             ul#chat
           .col-xs-4.scroller
-            ul#users
+            ul#users.list-group
       .chat-footer
         .input-group
           input(type="text" class="form-control")

@@ -46,7 +46,7 @@ $(function(){
 				self.send();
 			});
 			this.$input.keypress(function(e) {
-        		if(e.which == 13) self.send();
+				if(e.which == 13) { e.preventDefault(); self.send(); }
 			});
 		},
 		send: function() {
@@ -726,7 +726,7 @@ $(function(){
 		});
 	};
 	Usuarios.prototype.add = function(data){
-		var $usr = $('<li></li>').html(data.name);
+		var $usr = $('<li></li>').addClass('list-group-item list-group-item-dark').html(data.name);
 		this.$this.append($usr);
 	};
 	Usuarios.prototype.update = function(data){
