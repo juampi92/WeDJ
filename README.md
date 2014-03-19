@@ -54,7 +54,6 @@ To-Do
 ==================
  * Vote Playlist (already smart!)
  * About Tab
- * Design problems (bigger for smartphones)
 
 Contact
 ==================
