@@ -360,7 +360,7 @@ $(function(){
 			}
 			
 			// Iterar las canciones y agregarlas a la izquierda
-			self.musicTree.load(res.music);
+			self.musicTree.render(res.music);
 
 			if ( !first )$dest.parent().removeClass('wait');
 
@@ -410,12 +410,23 @@ $(function(){
 		this.load(this.$this,'',true);
 	}
 
+	// ------- Add song to playlist
+	function addSongToPlaylist( a ) {
+		if ( ! a.hasClass('disabled') ) {
+			$.getJSON( '/api/queue/' + a.data('id') , function( res ) {
+				var exito = ErrorHandler.handle(res);
+				if ( exito ) {
+					a.addClass('disabled');
+				}
+			});
+		}
+	};
+
 	// --------------------------------------------------------------------------------------
 	// Files Tree
 	// --------------------------------------------------------------------------------------
-	function FilesTree( object , url ) {
+	function FilesTree( object ) {
 		this.$this = object;
-		this.url = url;
 		this.clickEvent();
 	};
 
@@ -424,18 +435,11 @@ $(function(){
 		this.$this.on('click', 'a', function(e){ // dblclick doesnt work proper on touch
 			var $a = $(this);
 
-			if ( ! $a.hasClass('disabled') ) {
-				$.getJSON( self.url + $a.data('id') , function( res ) {
-					var exito = ErrorHandler.handle(res);
-					if ( exito ) {
-						$a.addClass('disabled');
-					}
-				});
-			}
+			addSongToPlaylist($a);
 		});
 	};
 
-	FilesTree.prototype.load = function ( object ){
+	FilesTree.prototype.render = function ( object ){
 		this.clear();
 		for (var i = 0; i < object.length; i++) {
 			this.addFile( object[i] );
@@ -454,8 +458,78 @@ $(function(){
 	}
 
 
-	var fSfiles = new FilesTree($("#FSfiles"),'/api/queue/');
-	var fSfolders = new LibraryTree($("#FSfolders"),'/api/nav',fSfiles);
+	var fSfiles = new FilesTree($("ul#FSfiles"));
+	var fSfolders = new LibraryTree($("ul#FSfolders"),'/api/nav',fSfiles);
+
+	// --------------------------------------------------------------------------------------
+	// Search
+	// --------------------------------------------------------------------------------------
+	function Search( input , container , url ) {
+		this.$input = input;
+		this.$container = container;
+		this.$padre = input.parent().parent().parent();
+		this.url = url;
+		this.events();
+	};
+
+	Search.prototype.setSearchBox = function(bool){
+		if ( bool ) this.$padre.addClass("searching");
+		else this.$padre.removeClass("searching");
+	};
+
+	Search.prototype.events = function(){
+		var self = this;
+		this.$container.on('click', 'a', function(e){ // dblclick doesnt work proper on touch
+			addSongToPlaylist( $(this) );
+		});
+		this.$input.keyup(function(e){
+			var $inp = $(this);
+			if ( $inp.val() == '' ) self.setSearchBox(false);
+			else {
+				if ( $inp.val().length > 3 ) {
+					$.post( self.url , {query: $inp.val() } , function( data ){
+						var res = JSON.parse(data);
+						self.setSearchBox(true);
+						self.render(res);
+					});
+				}
+			}
+		});
+		this.$input.next().click(function(e){
+			self.setSearchBox(false);
+			self.$input.val('');
+		});
+	};
+
+	Search.prototype.render = function ( folders ){
+		this.clear();
+		for ( var folder_id in folders ) {
+			var folder = folders[folder_id];
+			this.addFolder( folder[0].folder );
+			for (var i = 0; i < folder.length; i++) {
+				this.addFile( folder[i] );
+			};
+		};
+	}
+
+	Search.prototype.addFolder = function( name ) {
+		var $folder = $("<span></span>").html(name),
+			$li = $("<li></li>").addClass('folder').append($folder);
+		this.$container.append($li);
+	}
+
+	Search.prototype.addFile = function( object ) {
+		var added = (object.added != null ),
+			$file = $("<a></a>").data('id',object["_id"]).data('added',added).html(object.path),
+			$li = $("<li></li>").addClass('mp3').append($file);
+		if ( added ) $file.addClass('disabled');
+		this.$container.append($li);
+	}
+	Search.prototype.clear = function() {
+		this.$container.empty();
+	}
+
+	var search = new Search( $("input#searchbox") , $("ul#FSsearch") , '/api/search' );
 
 	// --------------------------------------------------------------------------------------
 	// Iniciar Modals
@@ -573,12 +647,17 @@ $(function(){
 		var self = this;
 		this.$message.bind('keypress', function(e) {
 			var code = e.keyCode || e.which;
-			if(code == 13) { //Enter keycode
-				if ( self.$message.val() == '' ) return;
-				self.$message.prop('disabled',true);
-				self.send(self.$message.val());
-			}
+			if(code == 13) //Enter keycode
+				self.sendMessage();
 		});
+		this.$message.next().children('button').click(function(e){
+			self.sendMessage();
+		});
+	};
+	Chat.prototype.sendMessage = function(){
+		if ( this.$message.val() == '' ) return;
+		this.$message.prop('disabled',true);
+		this.send(this.$message.val());
 	};
 	Chat.prototype.addMessage = function(obj){
 		if ( $li_active.data('dir') != 'chat' ) {

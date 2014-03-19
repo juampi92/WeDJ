@@ -203,6 +203,20 @@ ul.adminMenu > li.buttonStop {
   display:none;
 }
 
+
+.container-fluid .row-fluid{ display: block;}
+.container-fluid .row-fluid.searchCont{ display: none;}
+
+.container-fluid.searching .row-fluid{ display: none;}
+.container-fluid.searching .row-fluid.searchCont{ display: block;}
+
+.container-fluid form[name="buscador"] span.glyphicon-remove {
+  color:black;
+  cursor: pointer;
+  display:none;
+}
+.container-fluid.searching form[name="buscador"] span.glyphicon-remove {display:inline;}
+
 .scroller {
   background: #262626;
   height: 350px;
@@ -235,6 +249,13 @@ ul.adminMenu > li.buttonStop {
   -moz-border-radius-bottomleft: 10px;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
+}
+
+.scroller.scroller-full {
+  border-left:none;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
 }
 
 ul#playlist {

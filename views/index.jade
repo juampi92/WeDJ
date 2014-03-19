@@ -8,11 +8,18 @@ block content
     #tab_library
       h1.cover-heading #{lang.header.library}
       .container-fluid
+        form.form-inline(name="buscador" style="float:right;margin-top:-50px;")
+          .form-group.has-feedback
+            input#searchbox(type="text" class="form-control")
+            span.glyphicon.glyphicon-remove.form-control-feedback
         .row-fluid
           .col-xs-6.scroller.scroller-left
             ul#FSfolders.fileTree
           .col-xs-6.scroller
-            ul#FSfiles.fileTree   
+            ul#FSfiles.fileTree
+        .row-fluid.searchCont
+          .col.scroller.scroller-full
+            ul#FSsearch.fileTree
     #tab_chat
       h1.cover-heading #{lang.header.chat}
       .container-fluid
@@ -22,7 +29,10 @@ block content
           .col-xs-4.scroller
             ul#users
       .chat-footer
-        input(type="text" class="form-control")
+        .input-group
+          input(type="text" class="form-control")
+          span.input-group-btn
+            button.btn.btn-primary(type="button") #{lang.nav.send}
     #tab_about
       h1.cover-heading #{lang.header.about}
       p.lead

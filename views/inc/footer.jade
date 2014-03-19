@@ -5,7 +5,7 @@
     | (2014)
 #templates
   #authModal.modal.fade.bs-modal-sm(tabindex='-1', role='dialog', aria-labelledby='authModal', aria-hidden='false')
-    .modal-dialog.modal-sm
+    .modal-dialog
       .modal-content
         .modal-header
           h4.modal-title #{lang.modals.login}
@@ -16,7 +16,7 @@
         .modal-footer
           button.btn.btn-primary(type='button') #{lang.modals.enter}
   #offlineModal.modal.fade.bs-modal-sm(tabindex='-1', role='dialog', aria-labelledby='offlineModal', aria-hidden='false')
-    .modal-dialog.modal-sm
+    .modal-dialog
       .modal-content
         .modal-header
           h4.modal-title #{lang.modals.serverOff}
@@ -25,7 +25,7 @@
           p #{lang.modals.serverDisInfo}
   if admin
     #libsModal.modal.fade.bs-modal-sm(tabindex='-1', role='dialog', aria-labelledby='libsModal', aria-hidden='false')
-      .modal-dialog.modal-sm
+      .modal-dialog
         .modal-content
           .modal-header
             button.close(type="button",data-dismiss="modal",aria-hidden="true") &times;
@@ -48,7 +48,7 @@
             button.btn.btn-default(type="button",data-dismiss="modal") #{lang.close}
             button.btn.btn-primary(type="button",data-cmd="savecfg",data-loading-text="#{lang.saving}...") #{lang.modals.savecfg}
     #exitModal.modal.fade.bs-modal-sm(tabindex='-1', role='dialog', aria-labelledby='exitModal', aria-hidden='false')
-      .modal-dialog.modal-sm
+      .modal-dialog
         .modal-content
           .modal-header
             button.close(type="button",data-dismiss="modal",aria-hidden="true") &times;

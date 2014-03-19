@@ -155,6 +155,20 @@ app.post('/api/nav', function(req, res){
 	});
 });
 
+app.post('/api/search', function(req, res){
+	if ( req.body.query < 3 ) { res.send("[]"); return; }
+	app.lib.search( req.body.query , function(resultado){
+		for (var folders in resultado) {
+			var folder = resultado[folder];
+			for ( var song in folder ) {
+				if ( app.playlist.isSong(song._id) ) song.added = true;
+				console.log(song.path);
+			}
+		}
+		res.send( JSON.stringify(resultado) );
+	});
+});
+
 // Next
 app.get('/api/votenext', function(req, res){
 	if ( ! app.users.isLogged(req.connection.remoteAddress) ) {

@@ -112,7 +112,8 @@
 			"play":"Play",
 			"stop":"Stop",
 			"next":"Next",
-			"exit":"Cerrar servidor"
+			"exit":"Cerrar servidor",
+			"send":"Enviar"
 		},
 		"modals":{
 			"login":"Identificate",

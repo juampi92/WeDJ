@@ -54,7 +54,7 @@ To-Do
 ==================
  * Smart Playlist (voting songs in playlist to re-arrange them)
  * About Tab
- * Design problems (bigger for smartphones, no send button in chat)
+ * Design problems (bigger for smartphones)
 
 Contact
 ==================
