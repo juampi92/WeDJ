@@ -1,0 +1,6 @@
+*
+!node_modules/auto_updater
+!node_modules/adm-zip
+!node.exe
+!.gitignore
+!install
