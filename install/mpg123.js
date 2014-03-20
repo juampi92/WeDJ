@@ -1,3 +1,5 @@
+var fs = require('fs');
+
 module.exports = function(app , callback){
 	if ( ! fs.existsSync("mpg123.exe") ) {
 		loc = { host:"mpg123.de", path:"/download/win32/mpg123-1.18.0-static-x86.zip"};

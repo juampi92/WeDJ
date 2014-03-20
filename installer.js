@@ -2,8 +2,9 @@ var fs = require('fs'),
 	path = require('path'),
 	colors = require('colors');
 
-var app = {},
-	app.autoupdater = require('auto-updater')({check_git:false,autoupdate:true});
+var app = {};
+
+app.autoupdater = require('auto-updater')({check_git:false,autoupdate:true});
 
 // Mensajes de descarga:
 app.autoupdater.on('download-start',function(name){ console.log("Iniciando la descarga de: ".cyan.bold + name.green); });
@@ -14,10 +15,16 @@ app.autoupdater.on('download-error',function(err){ console.log("Error en la desc
 var modules = new Array();
 modules.push('wedj');
 modules.push('mpg123');
-modules.push('bootstrap');
+//modules.push('bootstrap');
 modules.push('npm');
 modules.push('npm_install');
+modules.push('final');
 
 function run( module ){
-	app.require( './install/' + modules[module] + '.js' )(app , function(){ run(module++) });
+	if ( module < modules.length )
+		require( './install/' + modules[module] + '.js' )(app , function(){ run(++module) });
+	else
+		console.log(" == Instalación completa! == ".bold.cyan);
 };
+
+run(0);
