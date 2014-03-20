@@ -1,2 +1,2 @@
-node.exe installer.js;
+node.exe installer.js
 pause;
