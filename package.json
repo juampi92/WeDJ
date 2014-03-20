@@ -1,0 +1,27 @@
+{
+  "name":"WeDJ",
+  "version": "0",
+  "scripts": {
+    "start": "node install.js"
+  },
+  "dependencies": {
+    "auto-updater": "*",
+    "colors":"*"
+  },
+  "auto-updater":{
+    "repo":"/juampi92/WeDJ",
+    "branch":"master"
+  },
+  "requires":{
+    "mpg123" : {
+      "ssh":"false",
+      "host":"mpg123.de",
+      "path":"/download/win32/mpg123-1.18.0-static-x86.zip"
+    },
+    "bootstrap" : {
+      "ssh":"true",
+      "host":"github.com",
+      "path":"/twbs/bootstrap/releases/download/v3.1.1/bootstrap-3.1.1-dist.zip"
+    }
+  }
+}

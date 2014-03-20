@@ -1,8 +1,9 @@
 *
-!README.md
+!.gitignore
 !node_modules/auto_updater*
 !node_modules/adm-zip*
 !node_modules/colors*
+!README.md
 !node.exe
-!.gitignore
 !install*
+!install/*.js

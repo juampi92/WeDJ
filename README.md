@@ -6,7 +6,7 @@ Windows (for now) installer for [**WeDJ**](https://github.com/juampi92/WeDJ).
 Download
 --------
 Download the zip of this repository, and extract it on the desired folder of the program.
-  https://github.com/juampi92/WeDJ/archive/installer.zip
+    https://github.com/juampi92/WeDJ/archive/installer.zip
 
 Dependencies
 ------------
