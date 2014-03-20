@@ -605,7 +605,8 @@ $(function(){
 			self.renderStatus(data.status);
 		});
 	};
-	NowListening.prototype.renderListening = function(song,load=false){
+	NowListening.prototype.renderListening = function(song,load){
+		load = (load || false);
 		var agregar = ' - ';
 		if ( ! $.isEmptyObject(song) )
 			agregar = (song.title == '?' ) ? song.path : "<b>" + song.artist + "</b> - " + song.title;
