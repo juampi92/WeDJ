@@ -2,6 +2,7 @@
 !README.md
 !node_modules/auto_updater*
 !node_modules/adm-zip*
+!node_modules/colors*
 !node.exe
 !.gitignore
 !install*
