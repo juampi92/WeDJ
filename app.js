@@ -8,13 +8,16 @@ var express = require('express'),
 	io = require('socket.io'),
 	_ = require('underscore');
 
-
+/**
+ * App
+ * @type {Object}
+ */
 var app = express();
 
 app.config = require('./lib/settings.js');
 app.db = {};
 
-// all environments
+// All environments
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -32,19 +35,9 @@ app.use(express.static(path.join(__dirname, 'public')));
  * This App
  */
 app.lang = require('./lang/lang.js').setLang(config.getLang());
-app.autoupdater = require('auto-updater')({async:false,autoupdate:true});
 
-	app.autoupdater.on('check-up-to-date',function(v){ console.log(app.lang.trans("autoupdater.check_up_to_date",v)); });
-	app.autoupdater.on('check-out-dated',function(v_old , v){ console.log(app.lang.trans("autoupdater.check_out_dated",v_old,v)); });
-	app.autoupdater.on('update-downloaded',function(){ console.log(app.lang.get("autoupdater.update_downloaded")); });
-	app.autoupdater.on('update-not-installed',function(){ console.log(app.lang.get("autoupdater.update_not_installed")); });
-	app.autoupdater.on('extracted',function(){ console.log(" > > ".bold.cyan + app.lang.get("autoupdater.extracted")); });
-	app.autoupdater.on('download-start',function(name){ console.log(" > ".bold.cyan + app.lang.trans("autoupdater.download_start",name)); });
-	app.autoupdater.on('download-update',function(name,perc){ process.stdout.write(" > ".bold.cyan + app.lang.trans("autoupdater.download_update",perc) + " \033[0G"); });
-	app.autoupdater.on('download-end',function(name){ console.log(" > ".bold.cyan + app.lang.trans("autoupdater.download_end",name)); });
-	app.autoupdater.on('download-error',function(err){ console.log((app.lang.get("autoupdater.download_error")).red); });
-
-	app.autoupdater.forceCheck();
+// Loads App AutoUpdater
+app.autoupdater = require('./lib/autoupdater.js')(app);
 
 app.lib = require('./lib/library.js')(app);
 app.users = require('./lib/users.js')(app);
@@ -55,53 +48,86 @@ app.music_tag = require('./lib/music_tag.js')(app);
 app.socket = require('./lib/socketManager.js');
 app.ip = require('./lib/localip.js');
 
-app.users.init( app.socket.broadcastUsers , app.ip );
+/**
+ * Initiates the users
+ */
+app.users.init(app.socket.broadcastUsers, app.ip);
 
-app.lib.init(function(){
+/**
+ * Initiates the library
+ */
+app.lib.init(function() {
 	app.config.setLastAnalyze(_.now());
 });
 
 app.lib.load();
-app.lib.onAnalyze(function(){
+app.lib.onAnalyze(function() {
 	app.player.stop();
 	app.playlist.reset();
-	app.socket.broadcastState({state:"analyze"});
+	app.socket.broadcastState({
+		state: "analyze"
+	});
 });
 
-app.playlist.init( app.socket.broadcastList , app.socket.broadcastCurrentSong , app.socket.broadcastState );
-app.playlist.setForcePlay( app.player.play ); // POSIBLE ERROR
+/**
+ * Initiates the Playlist
+ */
+app.playlist.init(app.socket.broadcastList, app.socket.broadcastCurrentSong, app.socket.broadcastState);
+app.playlist.setForcePlay(app.player.play); // POSIBLE ERROR
 
-app.player.init( {autopilot:true} , app.socket.broadcastState );
+
+/**
+ * Initiates the Player
+ */
+app.player.init({
+	autopilot: true
+}, app.socket.broadcastState);
 
 app.playlist.setPlayer(app.player);
 
-if ( app.music_tag.disabled() ) console.log(app.lang.get("error.warning").red + ": " + app.lang.get("require.musicmetadata"));
+// TMP
+if (app.music_tag.disabled()) console.log(app.lang.get("error.warning").red + ": " + app.lang.get("require.musicmetadata"));
 
-// ---------------------------
-// Command line interpreter
+/**
+ * Loads the Command Line Interpreter
+ */
 app.command = require('./lib/commandInterpreter.js')(app);
 
-// Exit handler
+/**
+ * Handler
+ * 	Handles the exit of the program
+ */
 process.on('exit', function(code) {
 	app.player.stop();
 	app.config.save();
-	app.socket.broadcastState({state:"off"}); // Broadcast exit
+	app.socket.broadcastState({
+		state: "off"
+	}); // Broadcast exit
 });
 
-// Routes
+/**
+ * Router
+ * 	Manage routes
+ */
 require('./lib/routes.js')(app);
 
-// Create Server con Socket
+/**
+ * Initiates the server
+ */
 var server = http.createServer(app),
-	io = io.listen(server, { log: false });
+	io = io.listen(server, {
+		log: false
+	});
 
-server.listen(app.get('port'), function(){
-	console.log(app.lang.get("config.serverStarted").green + (app.ip[0]+':'+app.get('port')).grey);
-	
+server.listen(app.get('port'), function() {
+	console.log(app.lang.get("config.serverStarted").green + (app.ip[0] + ':' + app.get('port')).grey);
+
 	// Open in browser (win)
-	if ( app.config.getDefOpen() )
-		require('child_process').exec('start http://'+app.ip[0]+':'+app.get('port'));
+	if (app.config.getDefOpen())
+		require('child_process').exec('start http://' + app.ip[0] + ':' + app.get('port'));
 });
 
-// Socket.io
+/**
+ * Initiates the Sockets
+ */
 app.socket.init(io.sockets);

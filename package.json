@@ -2,10 +2,10 @@
   "name": "WeDJ",
   "version": "0.0.2",
   "author": {
-    "name" : "@Juampi_92",
-    "url" : "https://github.com/juampi92"
+    "name": "@Juampi_92",
+    "url": "https://github.com/juampi92"
   },
-  "license" : "GPL-2.0",
+  "license": "GPL-2.0",
   "scripts": {
     "start": "node app.js"
   },
@@ -15,16 +15,16 @@
     "colors": "*",
     "socket.io": ">= 0.9.16",
     "underscore": ">= 1.6.0",
-    "auto-updater":"*",
-    "musicmetadata":">= 0.3.4",
-    "nedb":">= 0.10.4"
+    "auto-updater": "*",
+    "musicmetadata": ">= 0.3.4",
+    "nedb": ">= 0.10.4"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/juampi92/WeDJ.git"
   },
-  "auto-updater":{
-    "repo":"/juampi92/WeDJ",
-    "branch":"master"
+  "auto-updater": {
+    "repo": "/juampi92/WeDJ",
+    "branch": "master"
   }
 }
