@@ -1,158 +1,158 @@
 {
-	"error":{
-		"warning":"WARNING",
-		"error":"ERROR"
-	},
-	"require":{
-		"musicmetadata":"Install 'musicmetadata' to have the song title and the song artist"
-	},
-	"config": {
-		"saved":"Config Saved",
-		"IP":"Server IP",
-		"serverStarted":"Server created in: "
-	},
-	"playlist":{
-		"notExists":"Song doesn't exists",
-		"add":"%1 added %2",
-		"playing":"Playing %1"
-	},
-	"users":{
-		"logged":"%1 logged in [%2]"
-	},
-	"lib":{
-		"error": {
-			"nullInput":"Error: need to specify library",
-			"notexists":"Error: that directory does not exists"
-		},
-		"id3":{
-			"analyze":"> Analyzing ID3"
-		},
-		"updated": "Library updated",
-		"added":"> %1 added to the library",
-		"excluded":"> %1 excluded from library",
-		"removed":"> %1 removed from library",
-		"unexcluded":"> %1 no longer excluded from library",
-		"libsLoaded":"Libraries loaded",
-		"savingSongs":"Saving Music",
-		"savingPaths":"Saving Folders",
-		"starter":"Analyzing the library is needed. There are no song available.\nUse: \n\taddlib <absolutepath>\n\tanalyze"
-	},
-	"cmd":{
-		"langChange":"Language set to: ",
-		"nullInput":"Missing arguments",
-		"wrong":"Unknown command. Type 'help' for more info",
-		"help":{
-			"correctUse":"Correct use of commands",
-			"nav":"Navigation",
-			"next":"Next song in the playlist",
-			"stop":"Stops the music",
-			"play":"Resumes the song",
-			"lib":"Library",
-			"analyze":"Force analyze the library",
-			"addlib":"Adds a folder to the library",
-			"addlibexc":"Excludes a folder from the library",
-			"showlibs":"Shows all the folders in the library",
-			"showexc":"Shows all the excluded folders from the library",
-			"navFolder":"Shows all the sub-folders of the given folder",
-			"navSongs":"Shows all songs inside the give folder",
-			"repr":"Playlisting",
-			"queue":"Adds a song to the playlist",
-			"list":"Shows all current songs in the playlist",
-			"song":"Displays the info of the given song",
-			"current":"Shows the current playing song",
-			"state":"Shows the current state of the player",
-			"lang":"Sets the current language",
-			"ip":"Shows the Local IP in which the server is hosted",
-			"savecfg":"Saves the config",
-			"say":"Sends a message to the chat",
-			"abs_path":"absolutepath",
-			"folder":"folder",
-			"song_id":"songID",
-			"msg":"message",
-			"lang_code":"lang_code",
-			"exit":"Ends the app properly"
-		}
-	},
-	"api":{
-		"notLogged":"You are not logged in",
-		"logged":"You are logged in",
-		"msg_sent":"Message sent",
-		"nameInUse":"Name already taken",
-		"loggedAs":"Logged as %1",
-		"voteSent":"Vote sent",
-		"adminAuth":"Need admin rights",
-		"songAlready":"Song already in playlist",
-		"songAdded":"Song added"
-	},
-	"autoupdater":{
-		"git_clone":"You are using the git repository clone. Use 'git pull' to be up-to-date",
-		"check_up_to_date":"You have the lastest version: %1",
-		"check_out_dated":"Your version is outdated. You have %1 of %2",
-		"update_downloaded":"Update downloaded successfully",
-		"update_not_installed":"You already have the update. No need to download it",
-		"extracted":"Extracted successfully!",
-		"download_start":"Starting download of the update: %1",
-		"download_update":"Downloading %1%",
-		"download_end":"Downloaded %1",
-		"download_error":"Something went wrong while downloading."
-	},
-	"view":{
-		"header":{
-			"playlist":"Playlist",
-			"library":"Library",
-			"chat":"Chat",
-			"about":"About"
-		},
-		"nav":{
-			"navigation":"Navigation",
-			"nextSong":"Next song",
-			"options":"Options",
-			"libs":"Libraries",
-			"playlist":"Playlist",
-			"play":"Play",
-			"stop":"Stop",
-			"next":"Next",
-			"exit":"Close server",
-			"send":"Send"
-		},
-		"modals":{
-			"login":"Log In",
-			"username":"Username",
-			"enter":"Submit",
-			"serverOff":"Server disconnected",
-			"serverDisconnected":"The server was disconnected.",
-			"serverDisInfo":"This sign will dissapear if the server gets online in the next few minutes.",
-			"manLibs":"Manage libraries",
-			"libs":"Libraries",
-			"excludes":"Excludes",
-			"folderToAdd":"Folder to add",
-			"folderToExclude":"Folder to exclude",
-			"forceAnalyze":"Force Analysis",			
-			"analyzing":"Analyzing",
-			"savecfg":"Save config",
-			"exitConfirm":"Are you sure you want to close the server?"
-		},
-		"js":{
-			"empty":"Empty",
-			"login":{
-				"empty":"Fill your name",
-				"must":"You need to be logged in to do that"
-			},
-			"modal":{
-				"connecProb":"Connection problems",
-				"connecProbInfo":"Either the server was disconnected, or there are problems in the local network. <p>This sign will close if the connection is resumed in the next few minutes.</p>",
-				"srvrLost":"Server lost",
-				"srvrLostInfo":"We completely lost connection to the server. <p>Refresh the page to access again</p>"
-			},
-			"loading":"Loading",
-			"cancel":"Cancel",
-			"close":"Close",
-			"saving":"Saving",
-			"notif":{
-				"title":"Notification",
-				"logged":"Logged successfully",
-				"yourSong":"Playing a song you've added"
-			}
-		}
-	}
+  "error": {
+    "warning": "WARNING",
+    "error": "ERROR"
+  },
+  "require": {
+    "musicmetadata": "Install 'musicmetadata' to have the song title and the song artist"
+  },
+  "config": {
+    "saved": "Config Saved",
+    "IP": "Server IP",
+    "serverStarted": "Server created in: "
+  },
+  "playlist": {
+    "notExists": "Song doesn't exists",
+    "add": "%1 added %2",
+    "playing": "Playing %1"
+  },
+  "users": {
+    "logged": "%1 logged in [%2]"
+  },
+  "lib": {
+    "error": {
+      "nullInput": "Error: need to specify library",
+      "notexists": "Error: that directory does not exists"
+    },
+    "id3": {
+      "analyze": "> Analyzing ID3"
+    },
+    "updated": "Library updated",
+    "added": "> %1 added to the library",
+    "excluded": "> %1 excluded from library",
+    "removed": "> %1 removed from library",
+    "unexcluded": "> %1 no longer excluded from library",
+    "libsLoaded": "Libraries loaded",
+    "savingSongs": "Saving Music",
+    "savingPaths": "Saving Folders",
+    "starter": "Analyzing the library is needed. There are no song available.\nUse: \n\taddlib <absolutepath>\n\tanalyze"
+  },
+  "cmd": {
+    "langChange": "Language set to: ",
+    "nullInput": "Missing arguments",
+    "wrong": "Unknown command. Type 'help' for more info",
+    "help": {
+      "correctUse": "Correct use of commands",
+      "nav": "Navigation",
+      "next": "Next song in the playlist",
+      "stop": "Stops the music",
+      "play": "Resumes the song",
+      "lib": "Library",
+      "analyze": "Force analyze the library",
+      "addlib": "Adds a folder to the library",
+      "addlibexc": "Excludes a folder from the library",
+      "showlibs": "Shows all the folders in the library",
+      "showexc": "Shows all the excluded folders from the library",
+      "navFolder": "Shows all the sub-folders of the given folder",
+      "navSongs": "Shows all songs inside the give folder",
+      "repr": "Playlisting",
+      "queue": "Adds a song to the playlist",
+      "list": "Shows all current songs in the playlist",
+      "song": "Displays the info of the given song",
+      "current": "Shows the current playing song",
+      "state": "Shows the current state of the player",
+      "lang": "Sets the current language",
+      "ip": "Shows the Local IP in which the server is hosted",
+      "savecfg": "Saves the config",
+      "say": "Sends a message to the chat",
+      "abs_path": "absolutepath",
+      "folder": "folder",
+      "song_id": "songID",
+      "msg": "message",
+      "lang_code": "lang_code",
+      "exit": "Ends the app properly"
+    }
+  },
+  "api": {
+    "notLogged": "You are not logged in",
+    "logged": "You are logged in",
+    "msg_sent": "Message sent",
+    "nameInUse": "Name already taken",
+    "loggedAs": "Logged as %1",
+    "voteSent": "Vote sent",
+    "adminAuth": "Need admin rights",
+    "songAlready": "Song already in playlist",
+    "songAdded": "Song added"
+  },
+  "autoupdater": {
+    "git_clone": "You are using the git repository clone. Use 'git pull' to be up-to-date",
+    "check_up_to_date": "You have the lastest version: %1",
+    "check_out_dated": "Your version is outdated. You have %1 of %2",
+    "update_downloaded": "Update downloaded successfully",
+    "update_not_installed": "You already have the update. No need to download it",
+    "extracted": "Extracted successfully!",
+    "download_start": "Starting download of the update: %1",
+    "download_update": "Downloading %1%",
+    "download_end": "Downloaded %1",
+    "download_error": "Something went wrong while downloading."
+  },
+  "view": {
+    "header": {
+      "playlist": "Playlist",
+      "library": "Library",
+      "chat": "Chat",
+      "about": "About"
+    },
+    "nav": {
+      "navigation": "Navigation",
+      "nextSong": "Next song",
+      "options": "Options",
+      "libs": "Libraries",
+      "playlist": "Playlist",
+      "play": "Play",
+      "stop": "Stop",
+      "next": "Next",
+      "exit": "Close server",
+      "send": "Send"
+    },
+    "modals": {
+      "login": "Log In",
+      "username": "Username",
+      "enter": "Submit",
+      "serverOff": "Server disconnected",
+      "serverDisconnected": "The server was disconnected.",
+      "serverDisInfo": "This sign will dissapear if the server gets online in the next few minutes.",
+      "manLibs": "Manage libraries",
+      "libs": "Libraries",
+      "excludes": "Excludes",
+      "folderToAdd": "Folder to add",
+      "folderToExclude": "Folder to exclude",
+      "forceAnalyze": "Force Analysis",
+      "analyzing": "Analyzing",
+      "savecfg": "Save config",
+      "exitConfirm": "Are you sure you want to close the server?"
+    },
+    "js": {
+      "empty": "Empty",
+      "login": {
+        "empty": "Fill your name",
+        "must": "You need to be logged in to do that"
+      },
+      "modal": {
+        "connecProb": "Connection problems",
+        "connecProbInfo": "Either the server was disconnected, or there are problems in the local network. <p>This sign will close if the connection is resumed in the next few minutes.</p>",
+        "srvrLost": "Server lost",
+        "srvrLostInfo": "We completely lost connection to the server. <p>Refresh the page to access again</p>"
+      },
+      "loading": "Loading",
+      "cancel": "Cancel",
+      "close": "Close",
+      "saving": "Saving",
+      "notif": {
+        "title": "Notification",
+        "logged": "Logged successfully",
+        "yourSong": "Playing a song you've added"
+      }
+    }
+  }
 }

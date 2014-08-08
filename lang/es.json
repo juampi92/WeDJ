@@ -1,158 +1,160 @@
 {
-	"error":{
-		"warning":"ADVERTENCIA",
-		"error":"ERROR"
-	},
-	"require":{
-		"musicmetadata":"Instala 'musicmetadata' para analizar los títulos y artistas de las canciones"
-	},
-	"config": {
-		"saved":"Config guardada",
-		"IP":"IP del servidor",
-		"serverStarted":"Servidor creado en: "
-	},
-	"playlist":{
-		"notExists":"El tema no existe",
-		"add":"%1 agregó %2",
-		"playing":"Reproduciendo %1"
-	},
-	"users":{
-		"logged":"%1 se identificó [%2]"
-	},
-	"lib":{
-		"error": {
-			"nullInput":"Error: especificar biblioteca",
-			"notexists":"Error: no existe ese directorio"
-		},
-		"id3":{
-			"analyze":"> Analizando ID3"
-		},
-		"updated": "Biblioteca actualizada",
-		"added":"> %1 agregada a la biblioteca",
-		"excluded":"> %1 excluida de la biblioteca",
-		"removed":"> %1 eliminada de la biblioteca",
-		"unexcluded":"> %1 no está más excluida de la biblioteca",
-		"libsLoaded":"Bibliotecas cargadas",
-		"savingSongs":"Guardando Musicas",
-		"savingPaths":"Guardando Carpetas",
-		"starter":"Es necesario analizar la libreria. No hay canciones disponibles.\nUso: \n\taddlib <absolutepath>\n\tanalyze"
-	},
-	"cmd":{
-		"langChange":"Idioma seteado a: ",
-		"nullInput":"Faltan argumentos",
-		"wrong":"Comando desconocido. Ingresa 'help' para mas informacion",
-		"help":{
-			"correctUse":"Uso correcto de los comandos",
-			"nav":"Navegación",
-			"next":"Siguiente cancion en la lista",
-			"stop":"Detiene la reproducción",
-			"play":"Retoma/comienza la reproducción",
-			"lib":"Biblioteca",
-			"analyze":"Forza analizar bibliotecas",
-			"addlib":"Agrega la carpeta a la lista de bibliotecas",
-			"addlibexc":"Excluye esa carpeta de la biblioteca",
-			"showlibs":"Muestra todas las librerias",
-			"showexc":"Muestra las carpetas excluidas",
-			"navFolder":"Muestra las sub-carpetas de esa carpeta",
-			"navSongs":"Muestra las canciones de esa carpeta",
-			"repr":"Reproducción",
-			"queue":"Agrega la cancion a la playlist",
-			"list":"Muestra la playlist actual",
-			"song":"Muestra los datos de la canción",
-			"current":"Muestra el tema actual",
-			"state":"El estado del reproductor",
-			"lang":"Setea el idioma a utilizar",
-			"ip":"Muestra la IP de red en la que se aloja el servidor",
-			"savecfg":"Guarda la configuración actual",
-			"say":"Envía un mensaje al chat",
-			"abs_path":"absolutepath",
-			"folder":"carpeta",
-			"song_id":"cancionID",
-			"msg":"mensaje",
-			"lang_code":"codigo_idioma",
-			"exit":"Termina gentilmente la aplicación"
-		}
-	},
-	"api":{
-		"notLogged":"No estas loggeado",
-		"logged":"Estas loggeado",
-		"msg_sent":"Mensaje enviado",
-		"nameInUse":"Nombre en uso",
-		"loggedAs":"Identificado como %1",
-		"voteSent":"Voto enviado",
-		"adminAuth":"Necesitas permisos de administrador",
-		"songAlready":"La cancion ya esta en la playlist",
-		"songAdded":"Cancion agregada"
-	},
-	"autoupdater":{
-		"git_clone":"Notamos que tienes el repositorio git. Usa 'git pull' para descargar los ultimos cambios",
-		"check_up_to_date":"Tienes la ultima versión: %1",
-		"check_out_dated":"Tu versión no es la última. Tienes la %1 de %2",
-		"update_downloaded":"Update descargado en la máquina",
-		"update_not_installed":"Ya existe el update en la máquina. No es necesario descargarlo",
-		"extracted":"Extraido con exito!",
-		"download_start":"Iniciando la descarga del update: %1",
-		"download_update":"Downloading %1%",
-		"download_end":"Downloaded %1",
-		"download_error":"Error en la descarga: "
-	},
-	"view":{
-		"header":{
-			"playlist":"Playlist",
-			"library":"Biblioteca",
-			"chat":"Chat",
-			"about":"Acerca de"
-		},
-		"nav":{
-			"navigation":"Navegacion",
-			"nextSong":"Siguiente canción",
-			"options":"Opciones",
-			"libs":"Bibliotecas",
-			"playlist":"Reproducción",
-			"play":"Play",
-			"stop":"Stop",
-			"next":"Next",
-			"exit":"Cerrar servidor",
-			"send":"Enviar"
-		},
-		"modals":{
-			"login":"Identificate",
-			"username":"Nombre de usuario",
-			"enter":"Ingresar",
-			"serverOff":"Servidor desconectado",
-			"serverDisconnected":"El servidor fue desconectado.",
-			"serverDisInfo":"El cartel desaparecerá si se vuelve a conectar el servidor dentro de los próximos minutos.",
-			"manLibs":"Administrar Bibliotecas",
-			"libs":"Bilbiotecas",
-			"excludes":"Excluyentes",
-			"folderToAdd":"Carpeta a agregar",
-			"folderToExclude":"Carpeta a excluir",
-			"forceAnalyze":"Forzar Analisis",			
-			"analyzing":"Analizando",
-			"savecfg":"Guardar config",
-			"exitConfirm":"¿Estás seguro que querés cerrar el servidor?"
-		},
-		"js":{
-			"empty":"Vacio",
-			"login":{
-				"empty":"Ingresar un nombre",
-				"must":"Tenés que estar identificado para realizar eso"
-			},
-			"modal":{
-				"connecProb":"Problemas de conección",
-				"connecProbInfo":"O el servidor se desconectó, o hay problemas con la red local. <p>El cartel se cerrará si la conección se retoma en los próximos minutos.</p>",
-				"srvrLost":"Servidor perdido",
-				"srvrLostInfo":"Se perdió la conección con el servidor por completo. <p>Para volver a acceder, refresca la página</p>"
-			},
-			"loading":"Cargando",
-			"cancel":"Cancelar",
-			"close":"Cerrar",
-			"saving":"Guardando",
-			"notif":{
-				"title":"Notificación",
-				"logged":"Loggeado exitosamente",
-				"yourSong":"Reproduciendo canción que agregaste"
-			}
-		}
-	}
+  "error": {
+    "warning": "ADVERTENCIA",
+    "error": "ERROR"
+  },
+  "require": {
+    "musicmetadata": "Instala 'musicmetadata' para analizar los títulos y artistas de las canciones"
+  },
+  "config": {
+    "saved": "Config guardada",
+    "IP": "IP del servidor",
+    "serverStarted": "Servidor creado en: "
+  },
+  "playlist": {
+    "notExists": "El tema no existe",
+    "add": "%1 agregó %2",
+    "playing": "Reproduciendo %1"
+  },
+  "users": {
+    "logged": "%1 se identificó [%2]"
+  },
+  "lib": {
+    "error": {
+      "nullInput": "Error: especificar biblioteca",
+      "notexists": "Error: no existe ese directorio"
+    },
+    "id3": {
+      "analyze": "> Analizando ID3"
+    },
+    "updated": "Biblioteca actualizada",
+    "added": "> %1 agregada a la biblioteca",
+    "excluded": "> %1 excluida de la biblioteca",
+    "removed": "> %1 eliminada de la biblioteca",
+    "unexcluded": "> %1 no está más excluida de la biblioteca",
+    "libsLoaded": "Bibliotecas cargadas",
+    "savingSongs": "Guardando Musicas",
+    "savingPaths": "Guardando Carpetas",
+    "starter": "Es necesario analizar la libreria. No hay canciones disponibles.\nUso: \n\taddlib <absolutepath>\n\tanalyze"
+  },
+  "cmd": {
+    "langChange": "Idioma seteado a: ",
+    "nullInput": "Faltan argumentos",
+    "wrong": "Comando desconocido. Ingresa 'help' para mas informacion",
+    "help": {
+      "correctUse": "Uso correcto de los comandos",
+      "nav": "Navegación",
+      "next": "Siguiente cancion en la lista",
+      "stop": "Detiene la reproducción",
+      "play": "Retoma/comienza la reproducción",
+      "lib": "Biblioteca",
+      "analyze": "Forza analizar bibliotecas",
+      "addlib": "Agrega la carpeta a la lista de bibliotecas",
+      "addlibexc": "Excluye esa carpeta de la biblioteca",
+      "showlibs": "Muestra todas las librerias",
+      "showexc": "Muestra las carpetas excluidas",
+      "navFolder": "Muestra las sub-carpetas de esa carpeta",
+      "navSongs": "Muestra las canciones de esa carpeta",
+      "repr": "Reproducción",
+      "queue": "Agrega la cancion a la playlist",
+      "list": "Muestra la playlist actual",
+      "song": "Muestra los datos de la canción",
+      "current": "Muestra el tema actual",
+      "state": "El estado del reproductor",
+      "lang": "Setea el idioma a utilizar",
+      "ip": "Muestra la IP de red en la que se aloja el servidor",
+      "savecfg": "Guarda la configuración actual",
+      "say": "Envía un mensaje al chat",
+      "abs_path": "absolutepath",
+      "folder": "carpeta",
+      "song_id": "cancionID",
+      "msg": "mensaje",
+      "lang_code": "codigo_idioma",
+      "exit": "Termina gentilmente la aplicación"
+    }
+  },
+  "api": {
+    "notLogged": "No estas loggeado",
+    "logged": "Estas loggeado",
+    "msg_sent": "Mensaje enviado",
+    "nameInUse": "Nombre en uso",
+    "loggedAs": "Identificado como %1",
+    "voteSent": "Voto enviado",
+    "adminAuth": "Necesitas permisos de administrador",
+    "songAlready": "La cancion ya esta en la playlist",
+    "songAdded": "Cancion agregada"
+  },
+  "autoupdater": {
+    "git_clone": "Notamos que tienes el repositorio git. Usa 'git pull' para descargar los ultimos cambios",
+    "check_up_to_date": "Tienes la ultima versión: %1",
+    "check_out_dated": "Tu versión no es la última. Tienes la %1 de %2",
+    "update_downloaded": "Update descargado en la máquina",
+    "update_not_installed": "Ya existe el update en la máquina. No es necesario descargarlo",
+    "extracted": "Extraido con exito!",
+    "download_start": "Iniciando la descarga del update: %1",
+    "download_update": "Downloading %1%",
+    "download_end": "Downloaded %1",
+    "download_error": "Error en la descarga: "
+  },
+  "server": {
+  },
+  "view": {
+    "header": {
+      "playlist": "Playlist",
+      "library": "Biblioteca",
+      "chat": "Chat",
+      "about": "Acerca de"
+    },
+    "nav": {
+      "navigation": "Navegacion",
+      "nextSong": "Siguiente canción",
+      "options": "Opciones",
+      "libs": "Bibliotecas",
+      "playlist": "Reproducción",
+      "play": "Play",
+      "stop": "Stop",
+      "next": "Next",
+      "exit": "Cerrar servidor",
+      "send": "Enviar"
+    },
+    "modals": {
+      "login": "Identificate",
+      "username": "Nombre de usuario",
+      "enter": "Ingresar",
+      "serverOff": "Servidor desconectado",
+      "serverDisconnected": "El servidor fue desconectado.",
+      "serverDisInfo": "El cartel desaparecerá si se vuelve a conectar el servidor dentro de los próximos minutos.",
+      "manLibs": "Administrar Bibliotecas",
+      "libs": "Bilbiotecas",
+      "excludes": "Excluyentes",
+      "folderToAdd": "Carpeta a agregar",
+      "folderToExclude": "Carpeta a excluir",
+      "forceAnalyze": "Forzar Analisis",
+      "analyzing": "Analizando",
+      "savecfg": "Guardar config",
+      "exitConfirm": "¿Estás seguro que querés cerrar el servidor?"
+    },
+    "js": {
+      "empty": "Vacio",
+      "login": {
+        "empty": "Ingresar un nombre",
+        "must": "Tenés que estar identificado para realizar eso"
+      },
+      "modal": {
+        "connecProb": "Problemas de conección",
+        "connecProbInfo": "O el servidor se desconectó, o hay problemas con la red local. <p>El cartel se cerrará si la conección se retoma en los próximos minutos.</p>",
+        "srvrLost": "Servidor perdido",
+        "srvrLostInfo": "Se perdió la conección con el servidor por completo. <p>Para volver a acceder, refresca la página</p>"
+      },
+      "loading": "Cargando",
+      "cancel": "Cancelar",
+      "close": "Cerrar",
+      "saving": "Guardando",
+      "notif": {
+        "title": "Notificación",
+        "logged": "Loggeado exitosamente",
+        "yourSong": "Reproduciendo canción que agregaste"
+      }
+    }
+  }
 }
