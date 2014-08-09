@@ -1,6 +1,7 @@
 /**
  * Module dependencies.
  */
+
 var express = require('express'),
 	http = require('http'),
 	path = require('path'),
@@ -40,7 +41,7 @@ app.lang = require('./lang/lang.js').setLang(app.config.settings.getLang());
 app.autoupdater = require('./lib/autoupdater.js')(app);
 
 app.lib = require('./lib/Library.js')(app);
-app.users = require('./lib/Users.js')(app);
+app.users = require('./lib/users/Users.js')(app);
 app.player = require('./lib/player/Player.js')(app);
 app.playlist = require('./lib/Playlist.js')(app);
 app.music_tag = require('./lib/music_tag.js')(app);
@@ -91,7 +92,7 @@ if (app.music_tag.disabled()) console.log(app.lang.get("error.warning").red + ":
 /**
  * Loads the Command Line Interpreter
  */
-app.command = require('./lib/commandInterpreter.js')(app);
+app.command = require('./lib/CommandInterpreter.js')(app);
 
 /**
  * Handler
@@ -109,7 +110,7 @@ process.on('exit', function(code) {
  * Router
  * 	Manage routes
  */
-require('./lib/routes.js')(app);
+require('./lib/Routes.js')(app);
 
 /**
  * Initiates the server
