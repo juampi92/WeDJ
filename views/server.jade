@@ -13,6 +13,7 @@ html
       var lang = !{langjs};
   body
     .content
-      audio#audio(src="",controls)
+      audio#audio(src="",controls,style="width:60%")
+    script(type='text/javascript', src='/js/jquery-1.11.0.min.js')
     script(type='text/javascript', src='/socket.io/socket.io.js')
     script(type='text/javascript', src='js/server.js')

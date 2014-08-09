@@ -3,37 +3,24 @@ var socket = io.connect('localhost', {
 });
 
 socket.on('current', function(data) {
-  console.log(data);
+  audio.changeSong();
 });
 socket.on('state', function(data) {
+  console.log(data.state);
   switch (data.state) {
     case "off":
       // "Close window"
+      audio.stop();
       break;
       // Playing States:
     case "stop":
-      console.log('Stop');
+      audio.stop();
       break;
     case "play":
-      console.log('play');
+      audio.play();
       break;
     case "end":
-      console.log('end');
-      break;
-    case "auto":
-      console.log('auto');
-      break;
-    case "analyze":
-      console.log('analyze')
-      break;
-    case "votenext":
-      console.log('votenext');
-      break;
-    case "autopilot_true":
-      console.log('autopilot_true');
-      break;
-    case "autopilot_false":
-      console.log('autopilot_true')
+      audio.stop();
       break;
   }
 });
@@ -49,13 +36,18 @@ var audio = {
     this.el.play();
   },
   stop: function() {
-
+    this.el.pause();
   },
   terminate: function() {
 
   },
   ended: function() {
-    console.log("Ended");
+    $.get('/server/next',function(data){
+      console.log("Changing");
+    });
+  },
+  play: function(){
+    this.el.play();
   }
 };
 
