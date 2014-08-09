@@ -14,7 +14,7 @@ var express = require('express'),
  */
 var app = express();
 
-app.config = require('./lib/settings.js');
+app.config = require('./lib/Settings.js');
 app.db = {};
 
 // All environments
@@ -34,18 +34,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 /**
  * This App
  */
-app.lang = require('./lang/lang.js').setLang(config.getLang());
+app.lang = require('./lang/lang.js').setLang(app.config.settings.getLang());
 
 // Loads App AutoUpdater
 app.autoupdater = require('./lib/autoupdater.js')(app);
 
-app.lib = require('./lib/library.js')(app);
-app.users = require('./lib/users.js')(app);
-app.player = require('./lib/player.js')(app);
-app.playlist = require('./lib/playlist.js')(app);
+app.lib = require('./lib/Library.js')(app);
+app.users = require('./lib/Users.js')(app);
+app.player = require('./lib/player/Player.js')(app);
+app.playlist = require('./lib/Playlist.js')(app);
 app.music_tag = require('./lib/music_tag.js')(app);
 
-app.socket = require('./lib/socketManager.js');
+app.socket = require('./lib/SocketManager.js');
 app.ip = require('./lib/localip.js');
 
 /**
@@ -57,7 +57,7 @@ app.users.init(app.socket.broadcastUsers, app.ip);
  * Initiates the library
  */
 app.lib.init(function() {
-	app.config.setLastAnalyze(_.now());
+	app.config.lib.setLastAnalyze(_.now());
 });
 
 app.lib.load();
@@ -123,7 +123,7 @@ server.listen(app.get('port'), function() {
 	console.log(app.lang.get("config.serverStarted").green + (app.ip[0] + ':' + app.get('port')).grey);
 
 	// Open in browser (win)
-	if (app.config.getDefOpen())
+	if (app.config.settings.getDefOpen())
 		require('child_process').exec('start http://' + app.ip[0] + ':' + app.get('port'));
 });
 
