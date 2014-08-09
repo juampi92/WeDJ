@@ -25,7 +25,6 @@ app.set('view engine', 'jade');
 
 //io.set('log level', 1); // reduce logging
 app.use(express.favicon());
-//app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
@@ -57,18 +56,21 @@ app.users.init(app.socket.broadcastUsers, app.ip);
 /**
  * Initiates the library
  */
-app.lib.init(function() {
-	app.config.lib.setLastAnalyze(_.now());
+
+app.lib.load(true, function(r) {
+	if (r) console.log(app.lang.get("lib.libsLoaded"));
 });
 
-app.lib.load();
 app.lib.onAnalyze(function() {
 	app.player.stop();
 	app.playlist.reset();
 	app.socket.broadcastState({
 		state: "analyze"
 	});
+	app.config.lib.setLastAnalyze();
+	console.log("Analizado correctamente");
 });
+
 
 /**
  * Initiates the Playlist

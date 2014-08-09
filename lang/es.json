@@ -35,7 +35,9 @@
     "libsLoaded": "Bibliotecas cargadas",
     "savingSongs": "Guardando Musicas",
     "savingPaths": "Guardando Carpetas",
-    "starter": "Es necesario analizar la libreria. No hay canciones disponibles.\nUso: \n\taddlib <absolutepath>\n\tanalyze"
+    "starter": "Es necesario analizar la libreria. No hay canciones disponibles.\nUso: \n\taddlib <absolutepath>\n\tanalyze",
+    "songs": "Canciones",
+    "folders": "Carpetas"
   },
   "cmd": {
     "langChange": "Idioma seteado a: ",
@@ -96,8 +98,7 @@
     "download_end": "Downloaded %1",
     "download_error": "Error en la descarga: "
   },
-  "server": {
-  },
+  "server": {},
   "view": {
     "header": {
       "playlist": "Playlist",
