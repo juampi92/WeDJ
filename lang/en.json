@@ -35,7 +35,9 @@
     "libsLoaded": "Libraries loaded",
     "savingSongs": "Saving Music",
     "savingPaths": "Saving Folders",
-    "starter": "Analyzing the library is needed. There are no song available.\nUse: \n\taddlib <absolutepath>\n\tanalyze"
+    "starter": "Analyzing the library is needed. There are no song available.\nUse: \n\taddlib <absolutepath>\n\tanalyze",
+    "songs": "Songs",
+    "folders": "Folders"
   },
   "cmd": {
     "langChange": "Language set to: ",
