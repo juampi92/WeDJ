@@ -44,7 +44,7 @@ app.lib = require('./lib/Library.js')(app);
 app.users = require('./lib/users/Users.js')(app);
 app.player = require('./lib/player/Player.js')(app);
 app.playlist = require('./lib/Playlist.js')(app);
-app.music_tag = require('./lib/music_tag.js')(app);
+app.music_tag = require('./lib/MusicTag.js')(app);
 
 app.socket = require('./lib/SocketManager.js');
 app.ip = require('./lib/localip.js');
