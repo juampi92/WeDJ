@@ -56,6 +56,19 @@ module.exports = function(grunt) {
         tasks: ['jade']
       },
     },
+    yuidoc: {
+      compile: {
+        name: '<%= pkg.name %>',
+        description: '<%= pkg.description %>',
+        version: '<%= pkg.version %>',
+        url: '<%= pkg.homepage %>',
+        options: {
+          paths: [ 'lang/*.js', 'lib/*', 'views/js/*.js', 'app.js' ],
+          themedir: 'docs/theme/',
+          outdir: 'docs/'
+        }
+      }
+    }
   });
 
   grunt.event.on('watch', function(action, filepath, target) {
