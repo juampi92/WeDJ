@@ -63,9 +63,10 @@ module.exports = function(grunt) {
         version: '<%= pkg.version %>',
         url: '<%= pkg.homepage %>',
         options: {
-          paths: [ 'lang/*.js', 'lib/*', 'views/js/*.js', 'app.js' ],
+          paths: ['lang', 'lib', 'views/js/'],
           themedir: 'docs/theme/',
-          outdir: 'docs/'
+          helpers: ['docs/theme/helpers/helpers.js'],
+          outdir: 'docs/yui/'
         }
       }
     }

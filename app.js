@@ -73,7 +73,6 @@ app.lib.onAnalyze(function() {
  * Initiates the Playlist
  */
 app.playlist.init(app.socket.broadcastList, app.socket.broadcastCurrentSong, app.socket.broadcastState);
-app.playlist.setForcePlay(app.player.play); // POSIBLE ERROR
 
 
 /**
@@ -82,8 +81,6 @@ app.playlist.setForcePlay(app.player.play); // POSIBLE ERROR
 app.player.init({
 	autopilot: true
 }, app.socket.broadcastState);
-
-app.playlist.setPlayer(app.player);
 
 // TMP
 if (app.music_tag.disabled()) console.log(app.lang.get("error.warning").red + ": " + app.lang.get("require.musicmetadata"));
