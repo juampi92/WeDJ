@@ -420,6 +420,20 @@ li.simple {
     width: 765px !important;
   }
   .cover{
-    margin-top: 120px;
+    margin-top: 50px;
   }
+}
+
+
+/**
+ * Slider
+ */
+
+.row-fluid.col-slider > *:not(.slider-active) {
+  width:35%;
+  overflow-x: hidden;
+}
+
+.row-fluid.col-slider > *.slider-active {
+  width:65%;
 }

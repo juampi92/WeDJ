@@ -604,6 +604,21 @@ $(function() {
 
   var search = new Search($("input#searchbox"), $("ul#FSsearch"), '/api/search');
 
+
+  // --------------------------------------------------------------------------------------
+  // Column-Slider
+  // --------------------------------------------------------------------------------------
+
+  $('.row-fluid.col-slider').on('click', '>', function(e) {
+    var $this = $(this);
+
+    if ($this.hasClass('slider-active')) return;
+    e.preventDefault();
+
+    $this.parent().children('.slider-active').removeClass('slider-active');
+    $this.addClass('slider-active');
+  });
+
   // --------------------------------------------------------------------------------------
   // Iniciar Modals
   Auth.init(modals.$auth);

@@ -12,6 +12,12 @@ Run to install:
 
 	npm install
 
+And then install globally Grunt and do
+
+	grunt compile
+
+to generate the js, styles, and templates
+
 Dependencies
 ==================
 
@@ -49,6 +55,9 @@ To learn everything about the commands available:
 
 	help
 
+
+
+
 If using WebPlayer, launch in your browser this page:
 
 	localhost:3000/server
@@ -64,6 +73,12 @@ To-Do
 ==================
  * Vote Playlist (already smart!)
  * About Tab
+ * Add admins
+ * Upload Files
+
+ * UI improvements
+
+ * Create a stable release branch
 
 Known Bugs
 ==================

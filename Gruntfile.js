@@ -26,7 +26,7 @@ module.exports = function(grunt) {
       options: {
         mangle: false,
         compress: {
-          drop_console: true
+          drop_console: false // True in release
         },
         beautify: {
           width: 80,
