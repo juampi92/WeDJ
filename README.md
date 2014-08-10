@@ -11,8 +11,6 @@ To install this project you'll need [**Node.js**](http://nodejs.org/) and [**npm
 Run to install:
 
 	npm install
-Besides from node.js, this app needs
-
 
 Dependencies
 ==================
@@ -53,13 +51,13 @@ To learn everything about the commands available:
 
 If using WebPlayer, launch in your browser this page:
 
-  localhost:3000/server
+	localhost:3000/server
 
 If not, you'll have to download (if windows)
 
-  mpg123.exe
+	mpg123.exe
 
-Which can be downloaded from [**the website**](http://www.mpg123.de/download.shtml).
+Which can be downloaded from [**it's website**](http://www.mpg123.de/download.shtml).
 Put the binary, if using windows, in the same folder as the proyect.
 
 To-Do
