@@ -19,11 +19,8 @@ app.config = require('./lib/Settings.js');
 app.db = {};
 
 // All environments
-app.set('port', process.env.PORT || 3000);
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('port', process.env.PORT || app.config.settings.getPort());
 
-//io.set('log level', 1); // reduce logging
 app.use(express.favicon());
 app.use(express.json());
 app.use(express.urlencoded());

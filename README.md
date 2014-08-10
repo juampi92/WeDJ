@@ -55,6 +55,10 @@ To-Do
  * Vote Playlist (already smart!)
  * About Tab
 
+Known Bugs
+==================
+ * Next on admin options does not force you to login, so it does not work
+
 Contact
 ==================
  * GitHub: [github.com/juampi92](https://github.com/juampi92)

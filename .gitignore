@@ -1,3 +1,7 @@
+public/css/styles.min.css
+public/js/script.min.js
+public/js/server.min.js
+public/*.html
 settings/
 node_modules/
 *.bat

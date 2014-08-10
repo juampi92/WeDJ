@@ -1,5 +1,37 @@
 $(function() {
 
+  /**
+   * Language
+   */
+  function langJson(path) {
+    var arr = path.split('.'),
+      cursor = lang;
+    for (var i = 0; i < arr.length; i++)
+      cursor = cursor[arr[i]];
+    return cursor;
+  };
+
+  $('[data-lang]').each(function(a, b) {
+    var $el = $(b);
+    $el.html(langJson($el.data('lang')));
+  });
+  $('[placeholder]').each(function(a, b) {
+    var $el = $(b);
+    $el.attr('placeholder', langJson($el.attr('placeholder')));
+  });
+  $('[data-loading-text]').each(function(a, b) {
+    var $el = $(b);
+    $el.data('loading-text', langJson($el.data('loading-text')));
+  });
+  $('[title]').each(function(a, b) {
+    var $el = $(b);
+    $el.attr('title', langJson($el.attr('title')));
+  });
+
+  /**
+   * Basics
+   */
+
   var socket_off = false,
     $parent = $('#templates'),
     modals = {
@@ -43,7 +75,7 @@ $(function() {
         var self = this;
         $.getJSON('/auth', function(res) {
           if (res.status == "ok")
-            self.login_success(res.id, res.name);
+            self.login_success(res.id, res.name, res.admin);
         });
       },
       clickEvent: function() {
@@ -63,7 +95,7 @@ $(function() {
         this.$alert.hide();
 
         if (this.$input.val() == '') {
-          this.setError(lang.login.empty);
+          this.setError(lang.js.login.empty);
           return;
         }
 
@@ -78,11 +110,14 @@ $(function() {
         $.post('/auth', {
           name: nom
         }, function(data) {
+          data = JSON.parse(data);
+
           var msj = ErrorHandler.handle(data, true);
           if (msj !== true) {
             if (error != null) error(msj);
+
           } else {
-            self.login_success(data.id, self.$input.val());
+            self.login_success(data.id, self.$input.val(), data.admin);
             if (success != null) success();
           }
         });
@@ -93,7 +128,7 @@ $(function() {
           return true;
         }
         if (fromError == true)
-          this.setError(lang.login.must);
+          this.setError(lang.js.login.must);
         this.$modal.modal('show');
         return false;
       },
@@ -101,10 +136,15 @@ $(function() {
         this.$alert.show();
         this.$alert.html(error);
       },
-      login_success: function(id, name) {
+      login_success: function(id, name, admin) {
         this.id = id;
         this.name = name;
-        Notifications.show(lang.notif.logged);
+        Notifications.show(lang.js.notif.logged);
+        if (admin === 'true') {
+          this.admin = true;
+          $('li#adminOptions').removeClass('hide');
+          Admin.init();
+        }
       }
 
     },
@@ -125,8 +165,8 @@ $(function() {
       },
       popup: function(verified) {
         if (!verified) {
-          $titulo = this.$modal.find('h4.modal-title').html(lang.modal.connecProb);
-          $cuerpo = this.$modal.find('.modal-body').html(lang.modal.connecProbInfo);
+          $titulo = this.$modal.find('h4.modal-title').html(lang.js.modal.connecProb);
+          $cuerpo = this.$modal.find('.modal-body').html(lang.js.modal.connecProbInfo);
         }
         this.set = true;
         this.$modal.modal('show');
@@ -142,8 +182,8 @@ $(function() {
         var $titulo = this.$modal.find('h4.modal-title'),
           $cuerpo = this.$modal.find('.modal-body');
 
-        $titulo.html(lang.modal.srvrLost);
-        $cuerpo.html(lang.modal.srvrLostInfo);
+        $titulo.html(lang.js.modal.srvrLost);
+        $cuerpo.html(lang.js.modal.srvrLostInfo);
       }
     },
     // --------------------------------------------------------------------------------------
@@ -173,7 +213,7 @@ $(function() {
       init: function() {
         this.$pop = $('#playingsong .icons');
         this.$pop.popover({
-          title: lang.notif.title,
+          title: lang.js.notif.title,
           trigger: 'manual',
           placement: 'bottom',
           content: 'a'
@@ -220,26 +260,25 @@ $(function() {
     },
 
     init: function() {
-      if (is_admin) {
-        this.$modalLib = modals.$libManager;
-        this.$modalExit = modals.$exitConfirm;
 
-        this.$modalLib.modal({
-          show: false
-        });
-        this.$modalExit.modal({
-          show: false
-        });
+      this.$modalLib = modals.$libManager;
+      this.$modalExit = modals.$exitConfirm;
 
-        this.$adminMenu = $('ul.adminMenu');
-        this.$autoPilot = this.$adminMenu.children('li.auto-pilot');
+      this.$modalLib.modal({
+        show: false
+      });
+      this.$modalExit.modal({
+        show: false
+      });
 
-        this.libs.$libList = this.$modalLib.find('.modal-body .biblio ul');
-        this.libs.$libExclList = this.$modalLib.find('.modal-body .biblioexcl ul');
-        this.libs.$libInputs = this.$modalLib.find('.modal-body input');
+      this.$adminMenu = $('ul.adminMenu');
+      this.$autoPilot = this.$adminMenu.children('li.auto-pilot');
 
-        this.clickEvents();
-      }
+      this.libs.$libList = this.$modalLib.find('.modal-body .biblio ul');
+      this.libs.$libExclList = this.$modalLib.find('.modal-body .biblioexcl ul');
+      this.libs.$libInputs = this.$modalLib.find('.modal-body input');
+
+      this.clickEvents();
     },
     clickEvents: function() {
       var self = this;
@@ -295,7 +334,7 @@ $(function() {
         var $this = $(this);
         $this.button('loading');
 
-        console.log($this.html());
+        //console.log($this.html());
 
         self.send($this.data('cmd'), function(d) {
           $this.button('reset');
@@ -309,14 +348,14 @@ $(function() {
       }, callback);
     },
     setAutopilot: function(val) {
-      if (!is_admin) return;
+      if (!Auth.admin) return;
       if (val)
         this.$autoPilot.addClass('active');
       else
         this.$autoPilot.removeClass('active');
     },
     changeState: function(nuevo) {
-      if (!is_admin) return;
+      if (!Auth.admin) return;
       if (nuevo == "stop" || nuevo == "end")
         this.$adminMenu.removeClass('statePlay');
       else
@@ -344,7 +383,6 @@ $(function() {
     }
   };
 
-  Admin.init();
   Notifications.init();
 
   // --------------------------------------------------------------------------------------
@@ -594,7 +632,7 @@ $(function() {
       for (var i = 0; i < object.length; i++)
         this.addSong(object[i]);
     else
-      this.$this.append($('<li></li>').addClass('simple').html(lang.empty));
+      this.$this.append($('<li></li>').addClass('simple').html(lang.js.empty));
 
   };
   Playlist.prototype.addSong = function(songObj) {
@@ -607,11 +645,11 @@ $(function() {
   Playlist.prototype.nextSong = function() {
     this.$this.children(":first").remove();
     if (this.$this.children().length == 0)
-      this.$this.append($('<li></li>').addClass('simple').html(lang.empty));
+      this.$this.append($('<li></li>').addClass('simple').html(lang.js.empty));
   };
   Playlist.prototype.clear = function() {
     this.$this.empty();
-    this.$this.append($('<li></li>').addClass('simple').html(lang.empty));
+    this.$this.append($('<li></li>').addClass('simple').html(lang.js.empty));
   };
 
   // --------------------------------------------------------------------------------------
@@ -642,7 +680,7 @@ $(function() {
 
     this.$listening.html(agregar);
     playboard.reset();
-    if (!load && song != undefined && song.added != null && song.added == Auth.id) Notifications.show(lang.notif.yourSong);
+    if (!load && song != undefined && song.added != null && song.added == Auth.id) Notifications.show(lang.js.notif.yourSong);
   };
   NowListening.prototype.renderStatus = function(status) {
     this.$status.attr('class', 'glyphicon').addClass(this.icons[status]); //glyphicon-play
@@ -768,7 +806,7 @@ $(function() {
       for (var i = 0; i < data.length; i++) {
         this.add(data[i]);
       } else
-      this.$this.append($('<li></li>').addClass('simple').html(lang.empty));
+        this.$this.append($('<li></li>').addClass('simple').html(lang.js.empty));
   };
   var usuarios = new Usuarios($("ul#users"));
 
@@ -890,4 +928,5 @@ $(function() {
     current.load();
     playlist.load();
   };
+
 });
