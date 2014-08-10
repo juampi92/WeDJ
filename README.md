@@ -13,16 +13,12 @@ Run to install:
 	npm install
 Besides from node.js, this app needs
 
-	mpg123
-Which can be downloaded from [**the website**](http://www.mpg123.de/download.shtml).
-Put the binary, if using windows, in the same folder as the proyect.
 
 Dependencies
 ==================
 
 This proyect uses this node.js packages:
-  * [**Express**](http://expressjs.com/guide.html)
-  * [**Jade**](http://jade-lang.com/)
+  * [**Express**](http://expressjs.com/)
   * [**Colors**](https://www.npmjs.org/package/colors)
   * [**Socket.io**](http://socket.io/)
   * [**Underscore**](http://underscorejs.org/)
@@ -31,7 +27,12 @@ This proyect uses this node.js packages:
   * [**NeDB**](https://github.com/louischatriot/nedb)
 
 The web app uses:
+  * [**jQuery**](http://jquery.com/)
   * [**Bootstrap**](http://getbootstrap.com/)
+
+Dev packages:
+  * [**Grunt**](http://gruntjs.com)
+  * [**Jade**](http://jade-lang.com/)
 
 Basic Use
 ==================
@@ -49,6 +50,17 @@ Now you can start queueing files to the playlist.
 To learn everything about the commands available:
 
 	help
+
+If using WebPlayer, launch in your browser this page:
+
+  localhost:3000/server
+
+If not, you'll have to download (if windows)
+
+  mpg123.exe
+
+Which can be downloaded from [**the website**](http://www.mpg123.de/download.shtml).
+Put the binary, if using windows, in the same folder as the proyect.
 
 To-Do
 ==================
