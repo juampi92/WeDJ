@@ -72,7 +72,7 @@ app.lib.onAnalyze(function() {
 /**
  * Initiates the Playlist
  */
-app.playlist.init(app.socket.broadcastList, app.socket.broadcastCurrentSong, app.socket.broadcastState);
+app.playlist.init(app.socket.broadcastList, app.socket.broadcastState);
 
 
 /**
@@ -80,7 +80,7 @@ app.playlist.init(app.socket.broadcastList, app.socket.broadcastCurrentSong, app
  */
 app.player.init({
 	autopilot: true
-}, app.socket.broadcastState);
+}, app.socket.broadcastState, app.socket.broadcastCurrentSong);
 
 // TMP
 if (app.music_tag.disabled()) console.log(app.lang.get("error.warning").red + ": " + app.lang.get("require.musicmetadata"));
@@ -106,7 +106,7 @@ process.on('exit', function(code) {
  * Router
  * 	Manage routes
  */
-require('./lib/Routes.js')(app);
+require('./lib/router/Routes.js')(app);
 
 /**
  * Initiates the server

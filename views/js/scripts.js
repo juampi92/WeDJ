@@ -354,9 +354,9 @@ $(function() {
       else
         this.$autoPilot.removeClass('active');
     },
-    changeState: function(nuevo) {
+    changeState: function(state) {
       if (!Auth.admin) return;
-      if (nuevo == "stop" || nuevo == "end")
+      if (state == "stop" || state == "end")
         this.$adminMenu.removeClass('statePlay');
       else
         this.$adminMenu.addClass('statePlay');
@@ -652,8 +652,8 @@ $(function() {
   };
   Playlist.prototype.addSong = function(songObj) {
     var song_name = (songObj.title == '?') ? songObj.path : "<b>" + songObj.artist + "</b> - " + songObj.title,
-      $song = $("<a></a>").html(song_name).data('id', songObj._id).data('added', songObj.added),
-      $user = $("<span></span>").html(songObj.user_name),
+      $song = $("<a></a>").html(song_name).data('id', songObj._id).data('added', songObj.user.id),
+      $user = $("<span></span>").html(songObj.user.name),
       $li = $("<li></li>").addClass('mp3').append($song).append($user);
     this.$this.append($li);
   };
