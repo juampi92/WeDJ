@@ -24,9 +24,7 @@
       "nullInput": "Error: need to specify library",
       "notexists": "Error: that directory does not exists"
     },
-    "id3": {
-      "analyze": "> Analyzing ID3"
-    },
+    "starting": "Analyzing your library",
     "updated": "Library updated",
     "added": "> %1 added to the library",
     "excluded": "> %1 excluded from library",

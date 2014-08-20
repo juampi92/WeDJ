@@ -65,7 +65,6 @@ app.lib.onAnalyze(function() {
 		state: "analyze"
 	});
 	app.config.lib.setLastAnalyze();
-	console.log("Analizado correctamente");
 });
 
 

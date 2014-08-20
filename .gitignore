@@ -5,6 +5,7 @@ public/*.html
 docs/
 settings/
 node_modules/
+uploads/
 *.bat
 *.exe
 *.sh

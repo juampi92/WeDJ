@@ -24,9 +24,7 @@
       "nullInput": "Error: especificar biblioteca",
       "notexists": "Error: no existe ese directorio"
     },
-    "id3": {
-      "analyze": "> Analizando ID3"
-    },
+    "starting": "Analizando tu biblioteca",
     "updated": "Biblioteca actualizada",
     "added": "> %1 agregada a la biblioteca",
     "excluded": "> %1 excluida de la biblioteca",
